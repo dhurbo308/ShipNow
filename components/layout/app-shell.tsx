@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BarChart3, Bell, Boxes, CalendarDays, LayoutDashboard, MapPin,
-  Menu, MessageSquare, MoveLeft, PackageSearch, ReceiptText, Settings, Truck,
+  ChevronLeft, Menu, MessageSquare, PackageSearch, ReceiptText, Settings, Truck,
   UserRound, Warehouse,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
@@ -55,7 +55,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </aside>
       <div className="app-main">
         <header className="mobile-appbar">
-          {isCreateShipment ? <Link className="mobile-back" href="/shipments" aria-label="Back to shipments"><MoveLeft size={20} /></Link> : <Brand compact />}
+          {isCreateShipment ? <Link className="mobile-back" href="/shipments" aria-label="Back to shipments"><ChevronLeft size={22} /></Link> : <Brand compact />}
           <strong>{pageTitle}</strong>
           <button aria-label="Open navigation"><Menu size={21} /></button>
         </header>
