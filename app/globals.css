@@ -470,13 +470,160 @@ button:focus-visible, a:focus-visible {
 }
 
 @media (max-width: 1200px) {
-  .app-shell { grid-template-columns: 78px minmax(0, 1fr); }
+  .app-shell { grid-template-columns: 58px minmax(0, 1fr); }
   .sidebar { align-items: center; padding-inline: 10px; }
   .sidebar .app-brand > span:last-child, .profile-card > span:not(.avatar), .sidebar nav a span, .sidebar-secondary a span, .sidebar-secondary a em, .upgrade-card { display: none; }
   .profile-card { display: grid; grid-template-columns: 1fr; padding: 7px; }
   .sidebar nav a, .sidebar-secondary a { justify-content: center; width: 47px; padding: 0; }
   .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .type-panel, .alerts-panel, .activity-panel { grid-column: auto; }
+}
+
+@media (min-width: 701px) and (max-width: 1200px) {
+  .sidebar {
+    padding-top: 27px;
+  }
+
+  .sidebar .app-brand-mark {
+    width: 21px;
+    height: 24px;
+  }
+
+  .sidebar .app-brand-mark i {
+    width: 9px;
+    height: 12px;
+  }
+
+  .profile-card {
+    margin: 25px 0 17px;
+    background: transparent;
+  }
+
+  .dashboard {
+    padding: 20px 18px 0;
+  }
+
+  .dashboard-header {
+    margin-bottom: 18px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  .global-search {
+    width: 202px;
+  }
+
+  .primary-button {
+    min-width: 116px;
+    justify-content: center;
+    padding-inline: 12px;
+  }
+
+  .primary-button span {
+    font-size: 0;
+  }
+
+  .primary-button span::after {
+    content: "New Shipping";
+    font-size: 11px;
+  }
+
+  .metric-grid {
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .metric-card {
+    min-height: 104px;
+    padding: 15px;
+  }
+
+  .metric-card h2 {
+    font-size: 23px;
+  }
+
+  .metric-card > i {
+    width: 39px;
+    height: 39px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: 18px;
+  }
+
+  .shipment-chart {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .profit-chart {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .type-panel {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 438px;
+  }
+
+  .categories-panel {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 438px;
+  }
+
+  .tracking-panel {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    min-height: 430px;
+  }
+
+  .alerts-panel {
+    grid-column: 1;
+    grid-row: 4;
+    min-height: 415px;
+  }
+
+  .activity-panel {
+    grid-column: 2;
+    grid-row: 4;
+    min-height: 415px;
+  }
+
+  .recent-panel {
+    grid-column: 1 / -1;
+    grid-row: 5;
+    min-height: 350px;
+  }
+
+  .type-panel .donut-wrap {
+    margin-top: 8px;
+  }
+
+  .type-panel .type-legend {
+    margin-top: 10px;
+  }
+
+  .tracking-panel .map-search {
+    width: 43%;
+  }
+
+  .tracking-panel .route-line {
+    top: 155px;
+  }
+
+  .tracking-card {
+    right: auto;
+    width: 62%;
+  }
+
+  .recent-panel > header {
+    padding-right: 300px;
+  }
 }
 
 @media (max-width: 700px) {
