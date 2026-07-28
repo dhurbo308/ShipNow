@@ -371,6 +371,7 @@ button:focus-visible, a:focus-visible {
 .alert-list small b { display: inline; color: #8064ed; }
 .recent-panel { grid-column: 1 / span 2; min-height: 350px; }
 .recent-panel > header { padding-right: 300px; }
+.recent-panel > header > button { display: none; }
 .table-tools { position: absolute; top: 14px; right: 15px; display: flex; gap: 8px; }
 .table-tools label { display: flex; align-items: center; gap: 7px; width: 215px; height: 29px; border-radius: 7px; padding: 0 10px; background: #f2f2f2; }
 .table-tools button { display: grid; width: 29px; height: 29px; place-items: center; border: 0; border-radius: 7px; background: #f2f2f2; }
