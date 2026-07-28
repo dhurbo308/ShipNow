@@ -920,6 +920,7 @@ button:focus-visible, a:focus-visible {
 .shipment-controls input { width: 100%; border: 0; outline: 0; background: transparent; font-size: 10px; }
 .shipment-controls button, .shipment-controls select { height: 37px; border: 0; border-radius: 8px; padding: 0 13px; color: #555; background: #fff; font-size: 10px; }
 .shipment-controls button { display: flex; align-items: center; gap: 5px; }
+.shipment-controls .mobile-new-shipment { display: none; }
 .shipment-controls span { color: #999; font-size: 9px; }
 .shipment-card-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 17px; }
 .shipment-card { min-width: 0; border-radius: 11px; padding: 15px; background: #fff; }
@@ -1075,17 +1076,105 @@ button:focus-visible, a:focus-visible {
 
 @media (max-width: 700px) {
   .shipments-page { padding: 17px 14px 0; }
-  .shipments-heading { margin-bottom: 18px; }
-  .shipments-heading h1 { font-size: 21px; }
-  .new-shipment { width: 39px; padding: 0; justify-content: center; }
-  .new-shipment { font-size: 0; }
-  .shipments-toolbar { gap: 12px; }
-  .status-tabs { width: 100%; overflow-x: auto; }
+  .shipments-heading { height: 0; margin: 0; overflow: visible; }
+  .shipments-heading > div { display: none; }
+  .shipments-heading > .new-shipment { display: none; }
+  .shipments-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 16px;
+    border-radius: 11px;
+    padding: 16px;
+    background: #fff;
+  }
+  .status-tabs { order: 2; width: 100%; overflow-x: auto; background: #f3f3f3; }
   .status-tabs button { flex: 0 0 auto; padding-inline: 15px; }
-  .shipment-controls { display: grid; grid-template-columns: 1fr auto auto; }
+  .shipment-controls { order: 1; display: grid; grid-template-columns: minmax(0, 1fr) 38px 38px; gap: 8px; }
+  .shipment-controls label { height: 43px; border-radius: 8px; background: #f2f2f2; }
+  .shipment-controls label input::placeholder { color: #777; }
+  .shipment-controls > button:not(.mobile-new-shipment) {
+    width: 38px;
+    height: 43px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    background: #f2f2f2;
+    font-size: 0;
+  }
+  .shipment-controls .mobile-new-shipment {
+    display: flex;
+    width: 38px;
+    height: 43px;
+    justify-content: center;
+    padding: 0;
+    color: #fff;
+    background: #292929;
+  }
   .shipment-controls span { display: none; }
-  .shipment-controls select { width: 77px; }
+  .shipment-controls select { display: none; }
   .shipment-card-grid { grid-template-columns: 1fr; gap: 13px; }
+  .shipment-card {
+    display: grid;
+    grid-template-columns: 38px minmax(92px, 1fr) auto;
+    grid-template-areas:
+      "mode identity company"
+      "route route route"
+      "progress progress progress";
+    align-items: center;
+    min-height: 257px;
+    padding: 15px;
+  }
+  .shipment-card > header {
+    display: contents;
+  }
+  .shipment-card > header > div {
+    grid-area: identity;
+    align-self: center;
+    min-width: 0;
+    padding-left: 9px;
+  }
+  .shipment-card > header strong {
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+  .shipment-card > header i {
+    grid-area: mode;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+  }
+  .shipment-company {
+    grid-area: company;
+    min-height: 58px;
+    justify-self: end;
+    gap: 9px;
+    padding: 0;
+  }
+  .shipment-company > b {
+    width: 29px;
+    height: 29px;
+  }
+  .shipment-company span strong {
+    max-width: 105px;
+    font-size: 10px;
+  }
+  .shipment-company span small {
+    font-size: 8px;
+  }
+  .shipment-route {
+    grid-area: route;
+    width: 100%;
+    min-height: 111px;
+    margin-top: 1px;
+    border-top: 1px solid #e6e6e6;
+    border-radius: 0 0 8px 8px;
+    padding-top: 15px;
+  }
+  .shipment-card > footer {
+    grid-area: progress;
+    width: 100%;
+  }
   .shipments-pagination { align-items: flex-start; flex-direction: column; padding: 12px 0 20px; }
   .shipments-footer { align-items: center; flex-direction: column; gap: 11px; padding: 18px 10px 27px; text-align: center; }
   .shipments-footer span:last-child { margin-left: 0; }

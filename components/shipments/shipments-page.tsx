@@ -54,6 +54,7 @@ export function ShipmentsPage() {
           <div className="shipment-controls">
             <label><Search size={17} /><input value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} placeholder="Search Shipment" /></label>
             <button><Filter size={16} />Filter⌄</button>
+            <button className="mobile-new-shipment" aria-label="New shipment"><Plus size={18} /></button>
             <span>Sort by:</span>
             <select value={sort} onChange={(e) => setSort(e.target.value)}><option>Newest</option><option>Progress</option><option>Company</option></select>
           </div>
