@@ -741,6 +741,7 @@ button:focus-visible, a:focus-visible {
 .detail-sections > .form-section { padding: 10px 8px; }
 .detail-sections > .form-section:first-child { padding-right: 20px; }
 .detail-sections > .form-section:last-child { padding-left: 20px; }
+.package-section .form-field > input { background: #f5f5f5; }
 .weight-field { display: grid; grid-template-columns: 1fr 72px; grid-column: 1 / -1; gap: 10px; }
 .weight-field .form-field { grid-column: auto; }
 .weight-field label { display: block; }
