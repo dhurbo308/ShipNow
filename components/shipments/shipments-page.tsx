@@ -54,6 +54,10 @@ export function ShipmentsPage() {
           </div>
           <button className="new-shipment"><Plus size={18} />New Shipment</button>
         </header>
+        <div className="mobile-view-switcher" aria-label="Shipment view">
+          <button className={view === "table" ? "active" : ""} onClick={() => switchView("table")}><List size={15} /><span>Table</span></button>
+          <button className={view === "grid" ? "active" : ""} onClick={() => switchView("grid")}><Grid2X2 size={15} /><span>Cards</span></button>
+        </div>
 
         {view === "table" && <TableMetrics />}
 
