@@ -874,18 +874,29 @@ button:focus-visible, a:focus-visible {
 
 @media (max-width: 700px) {
   .create-shipment-page { padding: 18px 14px 0; }
-  .create-heading h1 { font-size: 19px; }
-  .create-heading p { display: none; }
+  .mobile-appbar .mobile-back { display: grid; width: 24px; place-items: center; color: #888; }
+  .create-heading { display: none; }
   .create-form { padding: 15px; }
+  .create-form > h2 { margin: 11px 7px 27px; font-size: 14px; }
   .contact-sections { padding: 15px 0; }
   .form-section-grid { grid-template-columns: 1fr; }
   .form-field.wide, .weight-field, .dimensions, .dimension-labels { grid-column: auto; }
+  .contact-sections .form-section { padding-inline: 16px; }
+  .contact-sections .form-section + .form-section { margin-top: 1px; padding-top: 20px; }
+  .package-section .form-section-grid { grid-template-columns: 1fr 1fr; gap: 16px 10px; }
+  .package-section .form-field.wide { grid-column: 1 / -1; }
+  .package-section .weight-field { grid-column: 1 / -1; }
+  .package-section .dimensions, .package-section .dimension-labels { grid-column: 1 / -1; }
   .weight-field { grid-template-columns: 1fr 72px; }
   .freight-types { grid-template-columns: repeat(2, 1fr); }
   .shipping-fields { grid-template-columns: 1fr; }
   .services-row { grid-template-columns: 1fr; gap: 22px; }
   .services-row fieldset, .services-row fieldset:last-child { grid-template-columns: 1fr; padding-left: 0; }
-  .form-actions { position: sticky; bottom: 0; margin-inline: -15px; padding: 12px 15px; background: #fff; }
+  .services-row fieldset:first-child label:nth-of-type(2) { order: 3; }
+  .services-row fieldset:first-child label:nth-of-type(3) { order: 2; }
+  .services-row fieldset:first-child label:nth-of-type(4) { order: 4; }
+  .form-actions { position: static; margin-inline: 0; padding: 16px 0 2px; background: #fff; }
+  .form-actions button { flex: 1; padding-inline: 10px; }
 }
 
 @media (max-width: 1024px) {

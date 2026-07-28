@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BarChart3, Bell, Boxes, CalendarDays, LayoutDashboard, MapPin,
-  Menu, MessageSquare, PackageSearch, ReceiptText, Settings, Truck,
+  Menu, MessageSquare, MoveLeft, PackageSearch, ReceiptText, Settings, Truck,
   UserRound, Warehouse,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
@@ -23,7 +23,8 @@ const nav = [
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const pageTitle = pathname.startsWith("/shipments") ? "Shipments" : "Dashboard";
+  const isCreateShipment = pathname === "/shipments/new";
+  const pageTitle = isCreateShipment ? "Create New Shipment" : pathname.startsWith("/shipments") ? "Shipments" : "Dashboard";
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -54,7 +55,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </aside>
       <div className="app-main">
         <header className="mobile-appbar">
-          <Brand compact />
+          {isCreateShipment ? <Link className="mobile-back" href="/shipments" aria-label="Back to shipments"><MoveLeft size={20} /></Link> : <Brand compact />}
           <strong>{pageTitle}</strong>
           <button aria-label="Open navigation"><Menu size={21} /></button>
         </header>
