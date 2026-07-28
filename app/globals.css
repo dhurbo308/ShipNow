@@ -1378,6 +1378,9 @@ button:focus-visible, a:focus-visible {
     background: transparent;
     font-size: 0;
   }
+  .table-mode-toolbar .shipment-controls > button:first-of-type svg:last-child {
+    display: none;
+  }
   .table-mode-toolbar .shipment-controls .mobile-new-shipment {
     display: flex;
     width: 38px;
