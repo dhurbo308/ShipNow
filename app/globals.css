@@ -734,9 +734,9 @@ button:focus-visible, a:focus-visible {
 .form-field > small { display: block; margin-top: 5px; color: #999; font-size: 8px; }
 .form-field > small.field-error { color: #583bc0; }
 .phone-input { display: flex; align-items: center; padding: 0; overflow: hidden; }
-.phone-input b { padding-left: 10px; font-size: 14px; }
-.phone-input span { padding: 0 9px 0 5px; border-right: 1px solid #ddd; font-size: 9px; }
-.phone-input input { min-width: 0; height: 100%; border: 0; padding: 0 9px; outline: 0; background: transparent; font-size: 10px; }
+.phone-input .us-flag { width: 22px; height: 15px; flex: 0 0 auto; margin-left: 10px; }
+.phone-input span { padding: 0 10px 0 7px; border-right: 1px solid #ddd; color: #444; font-size: 9px; white-space: nowrap; }
+.phone-input input { min-width: 0; height: 100%; border: 0; padding: 0 10px; outline: 0; color: #444; background: transparent; font-size: 10px; }
 .detail-sections { margin-top: 20px; }
 .detail-sections > .form-section { padding: 10px 8px; }
 .detail-sections > .form-section:first-child { padding-right: 20px; }

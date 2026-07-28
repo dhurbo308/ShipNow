@@ -122,7 +122,16 @@ function Field({ label, name, value, update, wide, placeholder, error, type = "t
 }
 
 function PhoneField(props: Omit<Parameters<typeof Field>[0], "wide">) {
-  return <label className="form-field"><span>{props.label}</span><div className="phone-input"><b>🇺🇸</b><span>+1⌄</span><input value={props.value} onChange={(e) => props.update(props.name, e.target.value)} /></div></label>;
+  return <label className="form-field"><span>{props.label}</span><div className="phone-input"><UsFlag /><span>+1⌄</span><input value={props.value} onChange={(e) => props.update(props.name, e.target.value)} /></div></label>;
+}
+
+function UsFlag() {
+  return <svg className="us-flag" viewBox="0 0 28 18" aria-hidden="true">
+    <rect width="28" height="18" rx="1.5" fill="#fff" />
+    {[0, 4, 8, 12, 16].map((y) => <rect key={y} y={y} width="28" height="2" fill="#e44b4b" />)}
+    <rect width="12" height="10" rx="1" fill="#4169a9" />
+    <path d="M2 2h1v1H2zm3 0h1v1H5zm3 0h1v1H8zM2 5h1v1H2zm3 0h1v1H5zm3 0h1v1H8zM2 8h1v1H2zm3 0h1v1H5zm3 0h1v1H8z" fill="#fff" />
+  </svg>;
 }
 
 function SelectField({ label, value, onChange, options, placeholder, error }: { label: string; value: string; onChange: (value: string) => void; options: string[]; placeholder?: string; error?: string }) {
