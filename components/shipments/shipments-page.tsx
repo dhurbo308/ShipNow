@@ -52,7 +52,7 @@ export function ShipmentsPage() {
               </div>
             </div>
           </div>
-          <button className="new-shipment"><Plus size={18} />New Shipment</button>
+          <button className="new-shipment" onClick={() => router.push("/shipments/new")}><Plus size={18} />New Shipment</button>
         </header>
         <div className="mobile-view-switcher" aria-label="Shipment view">
           <button className={view === "table" ? "active" : ""} onClick={() => switchView("table")}><List size={15} /><span>Table</span></button>
@@ -75,7 +75,7 @@ export function ShipmentsPage() {
               <div className="shipment-controls">
                 <label><Search size={17} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search id, company, etc" /></label>
                 <button><Filter size={16} />Filter <ChevronDown size={13} /></button>
-                <button className="mobile-new-shipment" aria-label="New shipment"><Plus size={18} /></button>
+                <button className="mobile-new-shipment" aria-label="New shipment" onClick={() => router.push("/shipments/new")}><Plus size={18} /></button>
                 <button><CalendarDays size={15} />This Month <ChevronDown size={13} /></button>
               </div>
             </div>
@@ -105,7 +105,7 @@ function ShipmentToolbar({ items, status, setStatus, query, setQuery, sort, setS
     <div className="shipment-controls">
       <label><Search size={17} /><input value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} placeholder="Search Shipment" /></label>
       <button><Filter size={16} />Filter⌄</button>
-      <button className="mobile-new-shipment" aria-label="New shipment"><Plus size={18} /></button>
+      <button className="mobile-new-shipment" aria-label="New shipment" onClick={() => location.assign("/shipments/new")}><Plus size={18} /></button>
       <span>Sort by:</span>
       <select value={sort} onChange={(e) => setSort(e.target.value)}><option>Newest</option><option>Progress</option><option>Company</option></select>
     </div>
