@@ -96,7 +96,7 @@ export function Dashboard() {
 }
 
 function Metric({ label, value, suffix, trend, note, icon }: { label: string; value: string; suffix?: string; trend: string; note: string; icon: React.ReactNode }) {
-  return <article className="metric-card"><div><p>{label}</p><h2>{value} <small>{suffix}</small></h2><span>⌁ {trend}</span> <em>{note}</em></div><i>{icon}</i></article>;
+  return <article className="metric-card"><div><p>{label}</p><h2>{value} <small>{suffix}</small></h2><span>↗ {trend}</span> <em>{note}</em></div><i>{icon}</i></article>;
 }
 
 function Panel({ title, action, className = "", children }: { title: React.ReactNode; action?: string; className?: string; children: React.ReactNode }) {
