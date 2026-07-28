@@ -31,10 +31,7 @@ const initialForm = {
 
 export function CreateShipmentForm() {
   const [form, setForm] = useState(initialForm);
-  const [errors, setErrors] = useState<FormErrors>({
-    deliveryAddress: "Address is required.",
-    method: "Shipping method is required.",
-  });
+  const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
 
   function update(name: keyof typeof initialForm, value: string) {
@@ -105,7 +102,7 @@ export function CreateShipmentForm() {
           </section>
 
           {submitted && <p className="form-success" role="status">Shipment is ready to be created.</p>}
-          <footer className="form-actions"><button type="button" onClick={() => { setForm(initialForm); setSubmitted(false); }}>Delete Form</button><button type="submit">Submit Shipment</button></footer>
+          <footer className="form-actions"><button type="button" onClick={() => { setForm(initialForm); setErrors({}); setSubmitted(false); }}>Delete Form</button><button type="submit">Submit Shipment</button></footer>
         </form>
       </main>
       <footer className="shipments-footer"><strong>Copyright © 2025 Peterdraw</strong><span>Privacy Policy　 Term and conditions　 Contact</span><span>◉　𝕏　◎　▻　in</span></footer>
