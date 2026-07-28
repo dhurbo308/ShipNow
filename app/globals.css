@@ -980,6 +980,99 @@ button:focus-visible, a:focus-visible {
   .shipment-controls label { flex: 1; }
 }
 
+@media (min-width: 701px) and (max-width: 1200px) {
+  .shipments-page {
+    padding: 21px 18px 0;
+  }
+
+  .shipments-heading {
+    margin-bottom: 24px;
+  }
+
+  .shipments-heading h1 {
+    font-size: 24px;
+  }
+
+  .shipments-toolbar {
+    align-items: center;
+    flex-direction: row;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .status-tabs {
+    height: 38px;
+    flex: 1 1 auto;
+  }
+
+  .status-tabs button {
+    flex: 1 0 auto;
+    padding-inline: 13px;
+  }
+
+  .shipment-controls {
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  .shipment-controls label {
+    width: 39px;
+    height: 39px;
+    flex: 0 0 39px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .shipment-controls label input {
+    display: none;
+  }
+
+  .shipment-controls button {
+    width: 39px;
+    height: 39px;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0;
+  }
+
+  .shipment-controls span {
+    white-space: nowrap;
+  }
+
+  .shipment-controls select {
+    width: 83px;
+    height: 39px;
+    padding-inline: 10px;
+  }
+
+  .shipment-card-grid {
+    gap: 16px 18px;
+  }
+
+  .shipment-card {
+    min-height: 303px;
+    padding: 15px;
+  }
+
+  .shipment-card > header {
+    min-height: 55px;
+  }
+
+  .shipment-company {
+    min-height: 67px;
+  }
+
+  .shipment-route {
+    min-height: 105px;
+  }
+
+  .shipments-footer {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
 @media (max-width: 700px) {
   .shipments-page { padding: 17px 14px 0; }
   .shipments-heading { margin-bottom: 18px; }
