@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   BarChart3, Bell, Boxes, CalendarDays, LayoutDashboard, MapPin,
   Menu, MessageSquare, PackageSearch, ReceiptText, Settings, Truck,
@@ -21,6 +22,8 @@ const nav = [
 ] as const;
 
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const pageTitle = pathname.startsWith("/shipments") ? "Shipments" : "Dashboard";
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -31,8 +34,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <span>⌄</span>
         </button>
         <nav aria-label="Main navigation">
-          {nav.map(([label, Icon, href], index) => (
-            <Link className={index === 0 ? "active" : ""} href={href} key={label}>
+          {nav.map(([label, Icon, href]) => (
+            <Link className={href !== "#" && pathname.startsWith(href) ? "active" : ""} href={href} key={label}>
               <Icon size={19} /><span>{label}</span>
             </Link>
           ))}
@@ -52,7 +55,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="app-main">
         <header className="mobile-appbar">
           <Brand compact />
-          <strong>Dashboard</strong>
+          <strong>{pageTitle}</strong>
           <button aria-label="Open navigation"><Menu size={21} /></button>
         </header>
         {children}
