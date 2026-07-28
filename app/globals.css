@@ -1161,18 +1161,7 @@ button:focus-visible, a:focus-visible {
   }
 
   .table-view .shipments-table-wrap table {
-    min-width: 820px;
-  }
-
-  .table-view .shipments-table-wrap th:nth-child(5),
-  .table-view .shipments-table-wrap td:nth-child(5),
-  .table-view .shipments-table-wrap th:nth-child(6),
-  .table-view .shipments-table-wrap td:nth-child(6),
-  .table-view .shipments-table-wrap th:nth-child(9),
-  .table-view .shipments-table-wrap td:nth-child(9),
-  .table-view .shipments-table-wrap th:nth-child(10),
-  .table-view .shipments-table-wrap td:nth-child(10) {
-    display: none;
+    min-width: 1120px;
   }
 
   .table-view .shipments-table-wrap th,
@@ -1368,12 +1357,8 @@ button:focus-visible, a:focus-visible {
   }
   .shipments-table-panel .shipments-table-wrap table { min-width: 1120px; }
   .table-view .shipments-table-wrap table {
-    width: 430px;
-    min-width: 430px;
-  }
-  .table-view .shipments-table-wrap th:nth-child(n+5),
-  .table-view .shipments-table-wrap td:nth-child(n+5) {
-    display: none;
+    width: 1120px;
+    min-width: 1120px;
   }
   .table-view .shipments-table-wrap th,
   .table-view .shipments-table-wrap td {
