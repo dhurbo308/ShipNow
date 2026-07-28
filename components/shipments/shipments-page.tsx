@@ -138,7 +138,7 @@ function ShipmentTable({ records }: { records: typeof shipmentRecords }) {
     <td><input type="checkbox" checked={selected.includes(item.id)} onChange={() => setSelected((old) => old.includes(item.id) ? old.filter((id) => id !== item.id) : [...old, item.id])} /></td>
     <td><b>#{item.id}</b><small>{modeName(item.mode)}</small></td>
     <td><span className="table-company"><i>{item.company[0]}</i><span>{item.company}<small>{item.category}</small></span></span></td>
-    <td>{item.carrier}</td><td>{item.category}</td><td>{[1200,850,1450,960,1680,1100,1250,920,1375,980,1020,1080][index % 12].toLocaleString()} kg</td>
+    <td>{item.carrier}<small>{item.category}<br />{shipmentWeight(index).toLocaleString()} kg</small></td><td>{item.category}</td><td>{shipmentWeight(index).toLocaleString()} kg</td>
     <td><span className="table-route"><b>{item.origin}</b> (Origin)<strong>{item.destination}</strong> (Destination)</span></td>
     <td><span className="table-date">{item.originDate} (ATD)<strong>{item.destinationDate} (ETA)</strong></span></td>
     <td><span className="table-progress"><i><b style={{ width: `${item.progress}%` }} /></i>{item.progress}%</span></td>
@@ -149,3 +149,4 @@ function ShipmentTable({ records }: { records: typeof shipmentRecords }) {
 function slug(value: ShipmentStatus) { return value.toLowerCase().replaceAll(" ", "-"); }
 function modeName(mode: "air" | "road" | "rail") { return mode === "air" ? "✈ Air Freight" : mode === "rail" ? "▣ Rail Freight" : "▱ Road Freight"; }
 function tableStatus(status: ShipmentStatus) { return status === "Delivered" ? "Completed" : status === "Processing" ? "Pending" : "Delivery"; }
+function shipmentWeight(index: number) { return [1200,850,1450,960,1680,1100,1250,920,1375,980,1020,1080][index % 12]; }

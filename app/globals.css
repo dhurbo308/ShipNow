@@ -1107,6 +1107,102 @@ button:focus-visible, a:focus-visible {
     padding-left: 18px;
     padding-right: 18px;
   }
+
+  .table-view .shipments-heading {
+    margin-bottom: 24px;
+  }
+
+  .table-view .shipment-metrics {
+    gap: 18px 20px;
+    margin-bottom: 20px;
+  }
+
+  .table-view .shipment-metrics article {
+    min-height: 98px;
+    padding: 15px;
+  }
+
+  .table-view .shipment-metrics article > div {
+    margin-top: 12px;
+  }
+
+  .table-view .table-mode-toolbar {
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  .table-view .table-mode-toolbar .status-tabs {
+    width: 299px;
+    flex: 0 0 299px;
+  }
+
+  .table-view .table-mode-toolbar .shipment-controls {
+    width: auto;
+    margin-left: auto;
+  }
+
+  .table-view .table-mode-toolbar .shipment-controls label {
+    width: 39px;
+    flex: 0 0 39px;
+  }
+
+  .table-view .table-mode-toolbar .shipment-controls button {
+    width: 39px;
+    flex: 0 0 39px;
+  }
+
+  .table-view .table-mode-toolbar .shipment-controls button:last-child {
+    width: 128px;
+    flex-basis: 128px;
+    gap: 7px;
+    padding-inline: 12px;
+    font-size: 10px;
+  }
+
+  .table-view .shipments-table-wrap table {
+    min-width: 820px;
+  }
+
+  .table-view .shipments-table-wrap th:nth-child(5),
+  .table-view .shipments-table-wrap td:nth-child(5),
+  .table-view .shipments-table-wrap th:nth-child(6),
+  .table-view .shipments-table-wrap td:nth-child(6),
+  .table-view .shipments-table-wrap th:nth-child(9),
+  .table-view .shipments-table-wrap td:nth-child(9),
+  .table-view .shipments-table-wrap th:nth-child(10),
+  .table-view .shipments-table-wrap td:nth-child(10) {
+    display: none;
+  }
+
+  .table-view .shipments-table-wrap th,
+  .table-view .shipments-table-wrap td {
+    padding-inline: 9px;
+  }
+
+  .table-view .shipments-table-wrap td {
+    height: 70px;
+  }
+
+  .table-view .shipments-table-wrap td:nth-child(2) {
+    min-width: 120px;
+  }
+
+  .table-view .shipments-table-wrap td:nth-child(3) {
+    min-width: 137px;
+  }
+
+  .table-view .shipments-table-wrap td:nth-child(4) {
+    min-width: 118px;
+  }
+
+  .table-view .shipments-table-wrap td:nth-child(7) {
+    min-width: 170px;
+  }
+
+  .table-view .shipments-table-wrap td:nth-child(8) {
+    min-width: 235px;
+  }
 }
 
 @media (max-width: 700px) {
