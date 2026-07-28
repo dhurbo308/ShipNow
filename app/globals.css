@@ -1231,6 +1231,29 @@ button:focus-visible, a:focus-visible {
     color: #fff;
     background: #292929;
   }
+  .grid-view .shipments-toolbar .shipment-controls {
+    grid-template-columns: minmax(0, 1fr) 34px 38px;
+    height: 58px;
+    gap: 4px;
+    border-radius: 10px;
+    padding: 7px;
+    background: #f2f2f2;
+  }
+  .grid-view .shipments-toolbar .shipment-controls label {
+    height: 44px;
+    padding: 0 5px;
+    background: transparent;
+  }
+  .grid-view .shipments-toolbar .shipment-controls > button:not(.mobile-new-shipment) {
+    width: 34px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+  }
+  .grid-view .shipments-toolbar .shipment-controls .mobile-new-shipment {
+    width: 38px;
+    height: 44px;
+  }
   .shipment-controls span { display: none; }
   .shipment-controls select { display: none; }
   .shipment-card-grid { grid-template-columns: 1fr; gap: 13px; }
