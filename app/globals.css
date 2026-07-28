@@ -719,7 +719,8 @@ button:focus-visible, a:focus-visible {
 .create-heading p b { color: #8064ed; }
 .create-form { border-radius: 12px; padding: 20px; background: #fff; }
 .create-form > h2 { margin: 0 0 27px; font-size: 14px; font-weight: 500; }
-.contact-sections, .detail-sections { display: grid; grid-template-columns: 1fr 1fr; }
+.contact-sections, .detail-sections { display: grid; }
+.contact-sections { grid-template-columns: 1fr 1fr; }
 .contact-sections { border-radius: 9px; padding: 17px 9px; background: #f5f5f5; }
 .form-section { min-width: 0; padding: 0 14px; }
 .form-section + .form-section { border-left: 1px solid #ddd; }
@@ -737,7 +738,7 @@ button:focus-visible, a:focus-visible {
 .phone-input .us-flag { width: 22px; height: 15px; flex: 0 0 auto; margin-left: 10px; }
 .phone-input span { padding: 0 10px 0 7px; border-right: 1px solid #ddd; color: #444; font-size: 9px; white-space: nowrap; }
 .phone-input input { min-width: 0; height: 100%; border: 0; padding: 0 10px; outline: 0; color: #444; background: transparent; font-size: 10px; }
-.detail-sections { margin-top: 20px; }
+.detail-sections { grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr); margin-top: 20px; }
 .detail-sections > .form-section { padding: 10px 8px; }
 .detail-sections > .form-section:first-child { padding-right: 20px; }
 .detail-sections > .form-section:last-child { padding-left: 20px; }
