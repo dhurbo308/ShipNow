@@ -71,6 +71,7 @@ export function ShipmentsPage() {
               <div className="shipment-controls">
                 <label><Search size={17} /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search id, company, etc" /></label>
                 <button><Filter size={16} />Filter <ChevronDown size={13} /></button>
+                <button className="mobile-new-shipment" aria-label="New shipment"><Plus size={18} /></button>
                 <button><CalendarDays size={15} />This Month <ChevronDown size={13} /></button>
               </div>
             </div>
