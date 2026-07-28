@@ -973,12 +973,47 @@ button:focus-visible, a:focus-visible {
 .shipments-table-wrap td { height: 53px; border-bottom: 1px solid #eee; padding: 0 12px; }
 .shipments-table-wrap td > b { color: #8064ed; }
 .shipments-table-wrap td small { display: block; margin-top: 4px; color: #999; }
+.shipment-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin-bottom: 20px; }
+.shipment-metrics article { min-height: 110px; border-radius: 11px; padding: 17px; background: #fff; }
+.shipment-metrics header { display: grid; grid-template-columns: 25px 1fr auto; align-items: center; color: #777; font-size: 10px; }
+.shipment-metrics header i { display: grid; width: 25px; height: 25px; place-items: center; border-radius: 7px; color: #8064ed; background: #e4ddff; }
+.shipment-metrics header svg { width: 14px; }
+.shipment-metrics header b { color: #999; font-size: 8px; letter-spacing: 1px; }
+.shipment-metrics article > div { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 17px; }
+.shipment-metrics article > div > strong { font-size: 27px; }
+.shipment-metrics article > div small { color: #999; font-size: 8px; line-height: 1.4; }
+.shipment-metrics article > div small b { border-radius: 7px; padding: 2px 4px; color: #27955d; background: #ddf8e9; }
+.shipments-table-panel { border-radius: 11px; padding: 15px; background: #fff; }
+.shipments-page.table-view .shipments-table-panel { border-radius: 11px 11px 0 0; padding-bottom: 0; }
+.shipments-page.table-view .shipments-pagination { border-radius: 0 0 11px 11px; padding: 0 15px; background: #fff; }
+.table-mode-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 13px; }
+.table-mode-toolbar .status-tabs { background: #f0f0f0; }
+.table-mode-toolbar .shipment-controls label { background: #f3f3f3; }
+.table-mode-toolbar .shipment-controls button { background: #f3f3f3; }
+.shipments-table-panel .shipments-table-wrap { padding: 0; border-radius: 0; }
+.shipments-table-panel .shipments-table-wrap th { height: 42px; border-bottom: 1px solid #ddd; padding: 0 10px; background: #fff; color: #666; font-size: 8px; font-weight: 500; }
+.shipments-table-panel .shipments-table-wrap td { height: 57px; padding: 0 10px; font-size: 8px; }
+.table-company { display: flex; align-items: center; gap: 9px; }
+.table-company > i { display: grid; width: 25px; height: 25px; place-items: center; color: #fff; background: #8064ed; font-style: normal; clip-path: polygon(25% 0,100% 0,100% 75%,75% 100%,0 100%,0 25%); }
+.table-company > span { color: #333; }
+.table-route, .table-date { display: grid; gap: 4px; color: #888; }
+.table-route b, .table-date { color: #444; font-weight: 500; }
+.table-route strong, .table-date strong { color: #6447d1; }
+.table-progress { display: flex; align-items: center; gap: 8px; }
+.table-progress > i { display: block; width: 68px; height: 6px; overflow: hidden; border-radius: 5px; background: #e8e8e8; }
+.table-progress > i b { display: block; height: 100%; border-radius: 5px; background: #8064ed; }
+.table-status { display: inline-flex; align-items: center; gap: 5px; border-radius: 12px; padding: 5px 9px; background: #f1f1f1; white-space: nowrap; }
+.table-status i { width: 7px; height: 7px; border-radius: 50%; background: #8064ed; }
+.table-status.completed i { background: #22b56c; }
+.table-status.pending i { background: #777; }
 
 @media (max-width: 1200px) {
   .shipment-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .shipments-toolbar { align-items: flex-start; flex-direction: column; }
   .shipment-controls { width: 100%; }
   .shipment-controls label { flex: 1; }
+  .shipment-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .table-mode-toolbar { align-items: flex-start; flex-direction: column; }
 }
 
 @media (min-width: 701px) and (max-width: 1200px) {
@@ -1178,4 +1213,10 @@ button:focus-visible, a:focus-visible {
   .shipments-pagination { align-items: flex-start; flex-direction: column; padding: 12px 0 20px; }
   .shipments-footer { align-items: center; flex-direction: column; gap: 11px; padding: 18px 10px 27px; text-align: center; }
   .shipments-footer span:last-child { margin-left: 0; }
+  .shipment-metrics { grid-template-columns: 1fr; gap: 12px; }
+  .table-mode-toolbar .shipment-controls { display: grid; grid-template-columns: 1fr 39px 39px; width: 100%; }
+  .table-mode-toolbar .shipment-controls button { width: 39px; padding: 0; justify-content: center; overflow: hidden; font-size: 0; }
+  .shipments-table-panel { padding: 12px; }
+  .shipments-table-panel .status-tabs { width: 100%; overflow-x: auto; }
+  .shipments-table-panel .shipments-table-wrap table { min-width: 1120px; }
 }
