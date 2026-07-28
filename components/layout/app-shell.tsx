@@ -3,7 +3,7 @@
 import Link from "next/link";
 import {
   BarChart3, Bell, Boxes, CalendarDays, LayoutDashboard, MapPin,
-  MessageSquare, PackageSearch, ReceiptText, Settings, Truck,
+  Menu, MessageSquare, PackageSearch, ReceiptText, Settings, Truck,
   UserRound, Warehouse,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
@@ -49,7 +49,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <button>Go Pro Today</button>
         </div>
       </aside>
-      <div className="app-main">{children}</div>
+      <div className="app-main">
+        <header className="mobile-appbar">
+          <Brand compact />
+          <strong>Dashboard</strong>
+          <button aria-label="Open navigation"><Menu size={21} /></button>
+        </header>
+        {children}
+      </div>
     </div>
   );
 }

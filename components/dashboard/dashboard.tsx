@@ -20,7 +20,7 @@ export function Dashboard() {
           <div><p>Hello John!</p><h1>Good Morning</h1></div>
           <div className="header-actions">
             <label className="global-search"><Search size={18} /><input placeholder="Search anything" /></label>
-            <button className="primary-button"><Plus size={18} />Add New Shipping</button>
+            <button className="primary-button"><Plus size={18} /><span>Add New Shipping</span></button>
           </div>
         </header>
 
@@ -99,7 +99,7 @@ function Metric({ label, value, suffix, trend, note, icon }: { label: string; va
   return <article className="metric-card"><div><p>{label}</p><h2>{value} <small>{suffix}</small></h2><span>⌁ {trend}</span> <em>{note}</em></div><i>{icon}</i></article>;
 }
 
-function Panel({ title, action, className = "", children }: { title: string; action?: string; className?: string; children: React.ReactNode }) {
+function Panel({ title, action, className = "", children }: { title: React.ReactNode; action?: string; className?: string; children: React.ReactNode }) {
   return <section className={`dash-panel ${className}`}><header><h2>{title}</h2>{action ? <button>{action}⌄</button> : <button aria-label="More options"><MoreHorizontal size={18} /></button>}</header>{children}</section>;
 }
 
@@ -126,7 +126,7 @@ function AlertsPanel() {
 }
 
 function RecentShipments() {
-  return <Panel className="recent-panel" title="Recent Shipments">
+  return <Panel className="recent-panel" title={<>Recent Shipment<span className="desktop-plural">s</span></>}>
     <div className="table-tools"><label><Search size={15} /><input placeholder="Search shipment" /></label><button><SlidersHorizontal size={15} /></button><button><MoreHorizontal size={15} /></button></div>
     <div className="table-scroll"><table><thead><tr><th>□</th><th>Shipping ID ↕</th><th>Company ↕</th><th>Carriers ↕</th><th>Route ↕</th><th>Shipping Date ↕</th><th>Status ↕</th></tr></thead>
       <tbody>{shipments.map((shipment) => <tr key={shipment.id}><td>□</td><td><b>#{shipment.id}</b></td><td>{shipment.company}<small>{shipment.category}</small></td><td>{shipment.carrier}</td><td>{shipment.route}</td><td>{shipment.date}</td><td><span className={`status ${shipment.status.toLowerCase().replaceAll(" ", "-")}`}>{shipment.status}</span></td></tr>)}</tbody>

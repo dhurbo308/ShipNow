@@ -45,4 +45,5 @@ export const activities = [
   { text: <>Customer Support <b>@SupportKen</b> added a priority tag to Order ID 77889JKL</>, time: "11:30 AM", icon: "tag" },
   { text: <>User <b>@SallyMae88</b> initiated a return process for Order ID 44556GH</>, time: "11:00 AM", icon: "refresh" },
   { text: <>Administrator <b>@AdminLisa</b> resolved a delivery issue for Order ID 12345XYZ</>, time: "10:15 AM", icon: "check" },
+  { text: <>User <b>@Mickey92</b> updated the shipping address for Order ID 67890ABC</>, time: "09:45 AM", icon: "refresh" },
 ];

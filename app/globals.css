@@ -283,6 +283,7 @@ button:focus-visible, a:focus-visible {
 .upgrade-card p { margin: 18px 0; color: #ddd; font-size: 10px; line-height: 1.55; }
 .upgrade-card button { width: 100%; height: 39px; border: 0; border-radius: 6px; color: #333; background: #fff; font-size: 13px; }
 .app-main { min-width: 0; }
+.mobile-appbar { display: none; }
 
 /* Dashboard */
 .dashboard { padding: 23px 20px 0; }
@@ -411,16 +412,81 @@ button:focus-visible, a:focus-visible {
 @media (max-width: 700px) {
   .app-shell { display: block; }
   .sidebar { display: none; }
-  .dashboard { padding: 18px 14px 0; }
-  .dashboard-header { align-items: flex-start; gap: 15px; }
-  .global-search { display: none; }
-  .primary-button { padding-inline: 11px; font-size: 10px; }
+  .mobile-appbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 64px;
+    border-bottom: 1px solid #eee;
+    padding: 0 21px;
+    background: #fff;
+  }
+  .mobile-appbar .app-brand-mark { width: 19px; height: 22px; }
+  .mobile-appbar .app-brand-mark i { width: 9px; height: 12px; }
+  .mobile-appbar > strong { font-size: 14px; font-weight: 500; }
+  .mobile-appbar > button { justify-self: end; border: 0; padding: 4px; color: #777; background: transparent; }
+  .dashboard { padding: 0 14px; }
+  .dashboard-header {
+    display: block;
+    margin: 0 -14px 16px;
+    padding: 16px 14px;
+    background: #fff;
+  }
+  .dashboard-header > div:first-child { display: none; }
+  .header-actions { display: grid; grid-template-columns: 1fr 40px; width: 100%; gap: 10px; }
+  .global-search { display: flex; width: 100%; height: 39px; background: #f0f0f0; }
+  .primary-button { width: 40px; height: 39px; justify-content: center; padding: 0; border-radius: 8px; }
+  .primary-button span { display: none; }
   .metric-grid, .dashboard-grid { grid-template-columns: 1fr; }
+  .metric-grid { gap: 13px; margin-bottom: 13px; }
+  .metric-card { min-height: 89px; border-radius: 11px; padding: 14px; }
+  .metric-card p { margin-bottom: 5px; font-size: 10px; }
+  .metric-card h2 { margin-bottom: 6px; font-size: 24px; }
+  .metric-card > i { position: absolute; right: 14px; width: 35px; height: 35px; }
+  .metric-card { position: relative; }
+  .metric-card > i svg { width: 17px; }
+  .dashboard-grid { gap: 14px; }
+  .dash-panel { border-radius: 11px; padding: 15px; }
+  .shipment-chart, .profit-chart { min-height: 267px; }
+  .type-panel { min-height: 365px; }
+  .donut-wrap > div:last-child { inset: 76px 0 auto; }
+  .categories-panel { min-height: 426px; }
+  .tracking-panel { min-height: 590px; }
+  .map-search { top: 17px; width: calc(100% - 34px); }
+  .map-controls { top: 320px; }
+  .route-line { top: 240px; }
+  .tracking-card { right: 15px; bottom: 16px; left: 15px; padding: 0; box-shadow: none; }
+  .tracking-card header { margin-bottom: 8px; }
+  .tracking-card > div:nth-child(2) { margin-bottom: 17px; }
+  .tracking-card footer strong { font-size: 10px; }
+  .alerts-panel { min-height: 540px; }
+  .alert-summaries { gap: 6px; }
+  .alert-summaries div { min-height: 82px; padding-top: 13px; }
+  .alert-list > div { padding: 9px 0; }
   .recent-panel { grid-column: auto; }
-  .recent-panel > header { padding-right: 0; }
-  .table-tools { position: static; margin-bottom: 10px; }
-  .table-tools label { flex: 1; }
-  .app-footer { align-items: flex-start; flex-wrap: wrap; }
+  .desktop-plural { display: none; }
+  .recent-panel { min-height: 370px; overflow: hidden; }
+  .recent-panel > header { padding-right: 70px; }
+  .table-tools { top: 13px; right: 13px; }
+  .table-tools label { width: 29px; padding: 0 7px; }
+  .table-tools label input { display: none; }
+  .table-tools button:first-of-type { display: none; }
+  .table-scroll { width: calc(100% + 2px); padding-bottom: 9px; }
+  .recent-panel table { min-width: 720px; }
+  .activity-panel { min-height: 475px; }
+  .activity-list p { font-size: 10px; }
+  .app-footer {
+    display: grid;
+    justify-items: center;
+    gap: 13px;
+    margin: 19px 0 0;
+    padding: 14px 10px 27px;
+    text-align: center;
+  }
+  .app-footer nav { gap: 18px; }
   .app-footer > div { margin-left: 0; }
 }
 
