@@ -399,6 +399,76 @@ button:focus-visible, a:focus-visible {
 .app-footer nav { display: flex; gap: 22px; }
 .app-footer > div { margin-left: auto; font-size: 16px; }
 
+@media (min-width: 1201px) {
+  .dashboard {
+    display: grid;
+    grid-template-columns: 1.04fr 1.32fr .84fr;
+    gap: 19px;
+  }
+
+  .dashboard-header {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+  }
+
+  .metric-grid {
+    grid-column: 1 / span 2;
+    margin-bottom: 0;
+  }
+
+  .dashboard-grid {
+    display: contents;
+  }
+
+  .shipment-chart {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .profit-chart {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .type-panel {
+    grid-column: 3;
+    grid-row: 2 / span 2;
+  }
+
+  .categories-panel {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .tracking-panel {
+    grid-column: 2;
+    grid-row: 4;
+  }
+
+  .alerts-panel {
+    grid-column: 3;
+    grid-row: 4;
+  }
+
+  .recent-panel {
+    grid-column: 1 / span 2;
+    grid-row: 5;
+  }
+
+  .activity-panel {
+    grid-column: 3;
+    grid-row: 5;
+  }
+
+  .type-panel .donut-wrap {
+    margin-top: 14px;
+  }
+
+  .type-panel .type-legend {
+    margin-top: 19px;
+  }
+}
+
 @media (max-width: 1200px) {
   .app-shell { grid-template-columns: 78px minmax(0, 1fr); }
   .sidebar { align-items: center; padding-inline: 10px; }
