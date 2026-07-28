@@ -259,22 +259,195 @@ button:focus-visible, a:focus-visible {
 
 .placeholder-page { padding: 48px; }
 
-@media (max-width: 900px) {
-  .login-visual { padding-inline: 3vw; }
-  .login-visual > .brand { margin-left: 18%; }
-  .login-photo-wrap { width: 72%; }
-  .login-form-panel { padding: 36px; }
+@media (max-width: 1024px) {
+  .login-page {
+    display: block;
+    min-height: auto;
+  }
+
+  .login-visual {
+    min-height: 960px;
+    padding: 140px 32px 92px;
+  }
+
+  .login-visual > .brand {
+    align-self: center;
+    margin-left: 0;
+    font-size: 34px;
+  }
+
+  .login-visual > .brand .brand-mark {
+    width: 31px;
+    height: 35px;
+  }
+
+  .login-visual > .brand .brand-mark i {
+    width: 14px;
+    height: 18px;
+  }
+
+  .login-photo-wrap {
+    width: min(51vw, 390px);
+    margin-top: 72px;
+  }
+
+  .welcome-copy {
+    width: min(78%, 620px);
+    margin-top: 96px;
+  }
+
+  .welcome-copy h1 {
+    margin-bottom: 16px;
+    font-size: 38px;
+  }
+
+  .welcome-copy p {
+    font-size: 15px;
+  }
+
+  .login-form-panel {
+    min-height: 960px;
+    padding: 105px 72px 180px;
+    place-items: start center;
+  }
+
+  .login-form {
+    width: min(100%, 500px);
+  }
+
+  .form-heading {
+    margin-bottom: 42px;
+  }
 }
 
-@media (max-width: 767px) {
-  .login-page { display: block; }
-  .login-visual { display: none; }
-  .login-form-panel {
-    min-height: 100dvh;
-    padding: 32px 24px;
+@media (max-width: 480px) {
+  .login-visual {
+    min-height: 680px;
+    padding: 105px 20px 72px;
   }
-  .login-form { max-width: 500px; }
-  .form-heading { margin-bottom: 36px; }
-  .form-heading .brand { margin-bottom: 28px; }
-  .form-options { margin-bottom: 34px; }
+
+  .login-visual > .brand {
+    font-size: 20px;
+    letter-spacing: -.7px;
+  }
+
+  .login-visual > .brand {
+    gap: 9px;
+  }
+
+  .login-visual > .brand .brand-mark {
+    width: 20px;
+    height: 23px;
+  }
+
+  .login-visual > .brand .brand-mark i {
+    width: 9px;
+    height: 12px;
+  }
+
+  .login-photo-wrap {
+    width: min(64vw, 240px);
+    margin-top: 55px;
+    border-radius: 7px;
+  }
+
+  .welcome-copy {
+    width: 86%;
+    margin-top: 70px;
+  }
+
+  .welcome-copy h1 {
+    max-width: 310px;
+    margin: 0 auto 16px;
+    font-size: 32px;
+    line-height: 1.08;
+    letter-spacing: -.8px;
+  }
+
+  .welcome-copy h1 span {
+    display: block;
+  }
+
+  .welcome-copy p {
+    max-width: 310px;
+    margin-inline: auto;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .login-form-panel {
+    min-height: 670px;
+    padding: 93px 32px 110px;
+  }
+
+  .form-heading {
+    margin-bottom: 31px;
+  }
+
+  .form-heading .brand {
+    margin-bottom: 34px;
+  }
+
+  .form-heading .brand-mark {
+    width: 27px;
+    height: 30px;
+  }
+
+  .form-heading .brand-mark i {
+    width: 12px;
+    height: 16px;
+  }
+
+  .form-heading h2 {
+    margin-bottom: 8px;
+    font-size: 20px;
+  }
+
+  .form-heading p {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .field {
+    margin-bottom: 14px;
+  }
+
+  .field label {
+    margin-bottom: 6px;
+    font-size: 10px;
+  }
+
+  .field input {
+    height: 42px;
+    border-radius: 7px;
+    padding-inline: 13px;
+    font-size: 10px;
+  }
+
+  .form-options {
+    margin: 0 0 30px;
+    font-size: 9px;
+  }
+
+  .checkbox-label {
+    gap: 6px;
+  }
+
+  .checkbox-label span {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    font-size: 9px;
+  }
+
+  .login-button {
+    height: 43px;
+    border-radius: 7px;
+    font-size: 12px;
+  }
+
+  .register-copy {
+    margin-top: 23px;
+    font-size: 9px;
+  }
 }

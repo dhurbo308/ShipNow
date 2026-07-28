@@ -47,7 +47,7 @@ export function LoginPage() {
           />
         </div>
         <div className="welcome-copy">
-          <h1 id="welcome-title">Welcome to ShipNow</h1>
+          <h1 id="welcome-title"><span>Welcome to</span> ShipNow</h1>
           <p>Manage your shipments, fleet, and warehouse in one smart dashboard.</p>
         </div>
       </section>
