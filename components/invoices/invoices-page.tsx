@@ -10,6 +10,10 @@ export function InvoicesPage() {
   const [status, setStatus] = useState<"All" | InvoiceStatus>("All");
   const filtered = useMemo(() => invoices.filter((invoice) => (status === "All" || invoice.status === status) && `${invoice.id} ${invoice.company} ${invoice.shipmentId}`.toLowerCase().includes(query.toLowerCase())), [query,status]);
   const selected = invoices.find((invoice) => invoice.id === selectedId) || invoices[0];
+  const cycleStatus = () => {
+    const options: Array<"All" | InvoiceStatus> = ["All","Paid","Unpaid","Overdue"];
+    setStatus(options[(options.indexOf(status) + 1) % options.length]);
+  };
 
   return <>
     <main className="invoices-page">
@@ -17,7 +21,7 @@ export function InvoicesPage() {
       <InvoiceMetrics />
       <div className="invoice-master-detail">
         <section className="invoice-list-panel">
-          <header><h2>Invoices</h2><div><label><Search /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search invoices" /></label><select aria-label="Filter invoices" value={status} onChange={(e) => setStatus(e.target.value as "All" | InvoiceStatus)}><option>All</option><option>Paid</option><option>Unpaid</option><option>Overdue</option></select><button><SlidersHorizontal /></button><button>New Invoice</button></div></header>
+          <header><h2>Invoices</h2><div><label><Search /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search invoices" /></label><button onClick={cycleStatus} aria-label={`Filter invoices. Current filter: ${status}`} title={`Filter: ${status}`}><SlidersHorizontal /></button><button>New Invoice</button></div></header>
           <InvoiceTable records={filtered} selectedId={selectedId} onSelect={setSelectedId} />
         </section>
         <InvoiceDetail invoice={selected} />
