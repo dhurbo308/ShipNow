@@ -893,10 +893,7 @@ button:focus-visible, a:focus-visible {
   .invoice-list-panel > header label input { display: none; }
   .invoice-list-panel > header button { width: 38px; height: 38px; padding: 0; font-size: 0; }
   .invoice-list-panel > header button:last-child:before { content: "+"; font-size: 20px; }
-  .invoice-table-wrap table { width: 510px; min-width: 510px; }
-  .invoice-table-wrap th:nth-child(4), .invoice-table-wrap td:nth-child(4),
-  .invoice-table-wrap th:nth-child(6), .invoice-table-wrap td:nth-child(6),
-  .invoice-table-wrap th:nth-child(7), .invoice-table-wrap td:nth-child(7) { display: none; }
+  .invoice-table-wrap table { width: 760px; min-width: 760px; }
   .invoice-table-wrap td { height: 62px; }
   .invoice-company > span > small { display: block; margin-top: 4px; }
   .invoice-detail-panel > header { align-items: flex-start; flex-direction: column; gap: 9px; }
