@@ -759,6 +759,7 @@ button:focus-visible, a:focus-visible {
 .warehouse-table td { height: 37px; border-bottom: 1px solid #ddd; }
 .warehouse-table td > i { display: block; width: 112px; height: 10px; border-radius: 2px; background: #eee; }
 .warehouse-table td > i b { display: block; height: 100%; background: #8064ed; }
+.warehouse-table td > small { display: none; }
 .package-panel { grid-column: 3; grid-row: 2; }
 .package-tabs { display: grid; grid-template-columns: repeat(4, 1fr); height: 34px; margin: 15px 0 14px; border-radius: 10px; background: #f1f1f1; }
 .package-tabs button { border: 0; border-radius: 9px; color: #777; background: transparent; font-size: 9px; }
@@ -817,15 +818,56 @@ button:focus-visible, a:focus-visible {
   .warehouse-page { padding: 16px 14px 0; }
   .warehouse-heading { display: block; }
   .warehouse-heading > div:first-child { display: none; }
-  .freight-tabs { overflow-x: auto; }
-  .freight-tabs button { flex: 0 0 auto; }
+  .freight-tabs { width: 100%; overflow: hidden; }
+  .freight-tabs button { flex: 1 1 0; justify-content: center; padding-inline: 8px; font-size: 0; }
+  .freight-tabs button.active { flex: 1.9 1 0; font-size: 9px; }
   .warehouse-layout { grid-template-columns: 1fr; gap: 13px; }
-  .warehouse-stats { grid-column: 1; grid-template-columns: 1fr; gap: 13px; }
-  .inventory-panel, .capacity-panel, .storage-panel, .package-panel, .warehouse-map, .warehouse-activity { grid-column: 1; grid-row: auto; }
-  .inventory-bars { overflow-x: auto; grid-template-columns: repeat(6, 75px); }
-  .map-grid { grid-template-columns: 1fr; }
-  .map-grid article.wide { grid-column: auto; }
-  .map-grid article > div { overflow-x: auto; }
+  .warehouse-stats { grid-column: 1; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px; }
+  .warehouse-stats article { min-height: 117px; padding: 14px 12px; }
+  .warehouse-stats p { min-height: 29px; margin-bottom: 8px; }
+  .warehouse-stats article > div { display: block; }
+  .warehouse-stats strong { display: block; margin-bottom: 12px; font-size: 20px; }
+  .warehouse-stats span { display: none; }
+  .warehouse-stats b { display: inline-block; margin-left: 0; font-size: 7px; }
+  .inventory-panel { grid-column: 1; grid-row: 2; }
+  .capacity-panel { grid-column: 1; grid-row: 3; }
+  .package-panel { grid-column: 1; grid-row: 4; }
+  .storage-panel { grid-column: 1; grid-row: 5; }
+  .warehouse-map { grid-column: 1; grid-row: 6; }
+  .warehouse-activity { grid-column: 1; grid-row: 7; }
+  .warehouse-panel { padding: 15px; }
+  .inventory-panel h3 { margin: 17px 0 12px; }
+  .inventory-bars { display: grid; grid-template-columns: 1fr; gap: 0; height: auto; overflow: visible; }
+  .inventory-bars > div {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: 1fr 1fr;
+    min-height: 65px;
+    border-bottom: 1px dashed #ddd;
+    text-align: right;
+  }
+  .inventory-bars > div:last-child { border-bottom: 0; }
+  .inventory-bars span { grid-column: 2; grid-row: 1; align-self: end; }
+  .inventory-bars > div > i { grid-column: 1; grid-row: 1 / span 2; width: 80px; height: 46px; align-self: center; border: 0; background: linear-gradient(90deg, #eee, #fff); }
+  .inventory-bars i b { top: 0; right: auto; height: 100% !important; max-height: none; }
+  .inventory-bars > div:nth-child(1) i b { width: 100%; }
+  .inventory-bars > div:nth-child(2) i b { width: 80%; }
+  .inventory-bars > div:nth-child(3) i b { width: 72%; }
+  .inventory-bars > div:nth-child(4) i b { width: 60%; }
+  .inventory-bars > div:nth-child(5) i b { width: 48%; }
+  .inventory-bars > div:nth-child(6) i b { width: 40%; }
+  .inventory-bars strong { grid-column: 2; grid-row: 2; padding-top: 3px; }
+  .storage-panel > header .storage-controls { display: none; }
+  .warehouse-table table { min-width: 430px; }
+  .warehouse-table th:nth-child(5), .warehouse-table td:nth-child(5),
+  .warehouse-table th:nth-child(6), .warehouse-table td:nth-child(6) { display: none; }
+  .warehouse-table td { height: 50px; }
+  .warehouse-table td > i { width: 75px; height: 5px; }
+  .warehouse-table td > small { display: block; margin-top: 4px; color: #555; font-size: 8px; }
+  .map-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 10px; }
+  .map-grid article.wide { grid-column: 1 / -1; }
+  .map-grid article > div { flex-wrap: wrap; overflow: visible; }
+  .map-grid article > div span { min-width: 35px; width: 35px; height: 35px; }
   .floor-tabs { grid-template-columns: repeat(3, 1fr); width: 200px; }
   .shipments-footer { flex-direction: column; }
 }
