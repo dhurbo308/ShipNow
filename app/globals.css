@@ -744,6 +744,7 @@ button:focus-visible, a:focus-visible {
 .invoice-table-wrap th { height: 36px; border-bottom: 1px solid #ddd; color: #555; text-align: left; font-size: 7px; font-weight: 400; }
 .invoice-table-wrap th button { border: 0; background: transparent; font-size: inherit; }
 .invoice-table-wrap th:nth-child(2) button { display: inline-flex; align-items: center; gap: 3px; padding: 0; color: inherit; }
+.invoice-table-wrap th:nth-child(2) button svg { width: 10px; height: 10px; flex: 0 0 auto; stroke-width: 1.7; }
 .invoice-select-all { display: grid; width: 13px; height: 13px; place-items: center; border-radius: 4px; color: #fff; background: #8064ed; font-size: 9px; line-height: 1; }
 .invoice-table-wrap th:first-child, .invoice-table-wrap td:first-child { width: 30px; padding-left: 7px; padding-right: 4px; }
 .invoice-table-wrap th:nth-child(2), .invoice-table-wrap td:nth-child(2) { width: 94px; padding-left: 4px; }
