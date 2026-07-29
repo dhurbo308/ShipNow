@@ -743,6 +743,8 @@ button:focus-visible, a:focus-visible {
 .invoice-table-wrap table { width: 100%; border-collapse: collapse; white-space: nowrap; font-size: 8px; }
 .invoice-table-wrap th { height: 36px; border-bottom: 1px solid #ddd; color: #555; text-align: left; font-size: 7px; font-weight: 400; }
 .invoice-table-wrap th button { border: 0; background: transparent; font-size: inherit; }
+.invoice-table-wrap th:nth-child(2) button { display: inline-flex; align-items: center; gap: 3px; padding: 0; color: inherit; }
+.invoice-select-all { display: grid; width: 13px; height: 13px; place-items: center; border-radius: 4px; color: #fff; background: #8064ed; font-size: 9px; line-height: 1; }
 .invoice-table-wrap td { height: 47px; border-bottom: 1px solid #ddd; padding: 0 6px; }
 .invoice-table-wrap tr { cursor: pointer; }
 .invoice-table-wrap tr.selected { background: #f0ecff; }
@@ -750,6 +752,9 @@ button:focus-visible, a:focus-visible {
 .invoice-table-wrap td strong, .invoice-table-wrap td small { display: block; }
 .invoice-table-wrap td strong { margin-top: 4px; color: #555; font-weight: 400; }
 .invoice-table-wrap td small { color: #888; font-size: 7px; }
+.invoice-date { display: grid; gap: 5px; }
+.invoice-date > span, .invoice-date > strong { display: block; margin: 0; white-space: nowrap; }
+.invoice-date small { display: inline; margin-left: 2px; }
 .invoice-company { display: flex; align-items: center; gap: 7px; }
 .invoice-company i { display: grid; width: 19px; height: 19px; place-items: center; color: #fff; background: #8064ed; font-style: normal; clip-path: polygon(25% 0,100% 0,100% 75%,75% 100%,0 100%,0 25%); }
 .invoice-table-wrap em, .invoice-document em { border-radius: 9px; padding: 4px 8px; color: #555; background: #e5e5e5; font-size: 7px; font-style: normal; }
