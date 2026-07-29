@@ -24,7 +24,7 @@ const nav = [
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isCreateShipment = pathname === "/shipments/new";
-  const pageTitle = isCreateShipment ? "Create New Shipment" : pathname.startsWith("/shipments") ? "Shipments" : pathname.startsWith("/warehouse") ? "Warehouse" : "Dashboard";
+  const pageTitle = isCreateShipment ? "Create New Shipment" : pathname.startsWith("/shipments") ? "Shipments" : pathname.startsWith("/warehouse") ? "Warehouse" : pathname.startsWith("/invoices") ? "Invoices & Billing" : "Dashboard";
   return (
     <div className="app-shell">
       <aside className="sidebar">
