@@ -814,6 +814,123 @@ button:focus-visible, a:focus-visible {
   .freight-tabs button { padding-inline: 10px; }
 }
 
+@media (min-width: 701px) and (max-width: 1200px) {
+  .warehouse-page {
+    padding: 21px 18px 0;
+  }
+
+  .warehouse-heading {
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .warehouse-heading h1 {
+    font-size: 23px;
+  }
+
+  .freight-tabs {
+    height: 42px;
+  }
+
+  .warehouse-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .warehouse-stats {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .warehouse-stats article {
+    min-height: 78px;
+  }
+
+  .inventory-panel {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-height: 235px;
+  }
+
+  .inventory-panel > header {
+    align-items: flex-start;
+  }
+
+  .inventory-panel h3 {
+    position: absolute;
+    top: 14px;
+    right: 48px;
+    margin: 0;
+  }
+
+  .inventory-panel {
+    position: relative;
+  }
+
+  .inventory-bars {
+    height: 167px;
+    margin-top: 16px;
+  }
+
+  .capacity-panel {
+    grid-column: 1;
+    grid-row: 3;
+    min-height: 290px;
+  }
+
+  .package-panel {
+    grid-column: 2;
+    grid-row: 3;
+    min-height: 290px;
+  }
+
+  .storage-panel {
+    grid-column: 1 / -1;
+    grid-row: 4;
+    min-height: 215px;
+  }
+
+  .warehouse-map {
+    grid-column: 1 / -1;
+    grid-row: 5;
+  }
+
+  .warehouse-activity {
+    grid-column: 1 / -1;
+    grid-row: 6;
+  }
+
+  .warehouse-activity > div {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .warehouse-activity article {
+    grid-template-columns: 35px 1fr;
+    min-height: 53px;
+    padding: 9px 0;
+  }
+
+  .warehouse-activity article > i {
+    width: 31px;
+    height: 31px;
+  }
+
+  .map-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .map-grid article.wide {
+    grid-column: span 3;
+  }
+
+  .warehouse-map > header {
+    margin-bottom: 4px;
+  }
+}
+
 @media (max-width: 700px) {
   .warehouse-page { padding: 16px 14px 0; }
   .warehouse-heading { display: block; }
