@@ -920,15 +920,31 @@ button:focus-visible, a:focus-visible {
   }
 
   .map-grid {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    gap: 11px;
+  }
+
+  .map-grid article {
+    grid-column: span 6;
   }
 
   .map-grid article.wide {
-    grid-column: span 8;
+    grid-column: span 17;
   }
 
   .map-grid article:last-child {
-    grid-column: span 4;
+    grid-column: span 7;
+  }
+
+  .map-grid article > div {
+    gap: 6px;
+  }
+
+  .map-grid article > div span {
+    min-width: 30px;
+    width: 30px;
+    height: 34px;
+    border-width: 6px;
   }
 
   .warehouse-map > header {
