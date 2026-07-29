@@ -779,7 +779,26 @@ button:focus-visible, a:focus-visible {
 .invoice-items td small { display: block; margin-top: 3px; color: #888; }
 .invoice-items td:last-child, .invoice-items th:last-child { text-align: right; }
 .invoice-items tfoot td { height: 26px; }
-.invoice-items tfoot td:first-child, .invoice-items tfoot th:first-child { text-align: right; }
+.invoice-items tfoot td:first-child, .invoice-items tfoot th:first-child {
+  padding-left: 36%;
+  text-align: left;
+}
+.invoice-items tfoot th {
+  height: 38px;
+  border-bottom: 0;
+  background: #fff;
+  font-weight: 600;
+}
+.invoice-items tfoot tr:last-child th:first-child {
+  background-image: linear-gradient(to right, transparent 0 36%, #ddd 36% 100%);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+}
+.invoice-items tfoot tr:last-child th:last-child { border-top: 1px solid #ddd; }
+.invoice-items tfoot tr:last-child th:last-child {
+  font-size: 9px;
+}
 .invoice-note { margin-top: 13px; }
 .invoice-note span { color: #888; font-size: 7px; }
 .invoice-note p { margin: 8px 0; font-size: 8px; line-height: 1.45; }
