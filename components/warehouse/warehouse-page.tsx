@@ -41,7 +41,7 @@ export function WarehousePage() {
 }
 
 function Stat({ label, value, suffix, trend }: { label: string; value: string; suffix?: string; trend: string }) {
-  return <article><p>{label}</p><div><strong>{value}</strong>{suffix && <span>{suffix}</span>}<b>↗ {trend}</b></div></article>;
+  return <article><p>{label}</p><div><strong>{value}</strong>{suffix && <span>{suffix}</span>}<b>↝ {trend}</b></div></article>;
 }
 
 function PanelHeader({ title, children }: { title: string; children?: React.ReactNode }) {
