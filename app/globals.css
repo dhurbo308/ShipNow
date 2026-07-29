@@ -907,13 +907,20 @@ button:focus-visible, a:focus-visible {
   .billing-addresses address + address { border-top: 1px solid #ddd; padding-top: 15px; }
   .billing-addresses address:last-child { text-align: left; }
   .invoice-items table { min-width: 0; }
+  .invoice-items table { table-layout: fixed; font-size: 8px; }
   .invoice-items th:nth-child(3), .invoice-items td:nth-child(3),
   .invoice-items th:nth-child(4), .invoice-items td:nth-child(4) { display: none; }
-  .invoice-items th:nth-child(1) { width: 46%; }
-  .invoice-items th:nth-child(2) { width: 34%; }
+  .invoice-items th:nth-child(1) { width: 47%; }
+  .invoice-items th:nth-child(2) { width: 33%; }
   .invoice-items th:nth-child(5) { width: 20%; }
+  .invoice-items th, .invoice-items td { padding-inline: 9px; }
+  .invoice-items tbody td { height: 53px; vertical-align: middle; }
+  .invoice-items td:last-child, .invoice-items th:last-child { padding-right: 10px; white-space: nowrap; }
   .mobile-item-meta { display: block !important; color: #8064ed !important; }
-  .invoice-items tfoot td:first-child, .invoice-items tfoot th:first-child { padding-left: 48%; }
+  .invoice-items tfoot td { height: 31px; }
+  .invoice-items tfoot td:first-child, .invoice-items tfoot th:first-child { padding-left: 51%; text-align: left; }
+  .invoice-items tfoot td:last-child, .invoice-items tfoot th:last-child { padding-right: 10px; text-align: right; }
+  .invoice-items tfoot tr:last-child th { height: 42px; }
   .invoice-mobile-actions { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 10px; margin-top: 13px; }
   .invoice-mobile-actions button { height: 44px; border: 0; border-radius: 8px; background: #eee; }
   .invoice-mobile-actions button:last-child { color: #fff; background: #292929; }
