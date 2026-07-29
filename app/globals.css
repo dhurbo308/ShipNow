@@ -745,10 +745,15 @@ button:focus-visible, a:focus-visible {
 .invoice-table-wrap th button { border: 0; background: transparent; font-size: inherit; }
 .invoice-table-wrap th:nth-child(2) button { display: inline-flex; align-items: center; gap: 3px; padding: 0; color: inherit; }
 .invoice-select-all { display: grid; width: 13px; height: 13px; place-items: center; border-radius: 4px; color: #fff; background: #8064ed; font-size: 9px; line-height: 1; }
+.invoice-table-wrap th:first-child, .invoice-table-wrap td:first-child { width: 30px; padding-left: 7px; padding-right: 4px; }
+.invoice-table-wrap th:nth-child(2), .invoice-table-wrap td:nth-child(2) { width: 94px; padding-left: 4px; }
 .invoice-table-wrap td { height: 47px; border-bottom: 1px solid #ddd; padding: 0 6px; }
 .invoice-table-wrap tr { cursor: pointer; }
 .invoice-table-wrap tr.selected { background: #f0ecff; }
 .invoice-table-wrap td > b { color: #8064ed; }
+.invoice-id-cell { display: inline-flex; align-items: center; gap: 5px; }
+.invoice-id-cell b { color: #8064ed; }
+.invoice-id-cell i { display: grid; width: 18px; height: 18px; place-items: center; border-radius: 4px; color: #777; background: #ededed; font-size: 9px; font-style: normal; }
 .invoice-table-wrap td strong, .invoice-table-wrap td small { display: block; }
 .invoice-table-wrap td strong { margin-top: 4px; color: #555; font-weight: 400; }
 .invoice-table-wrap td small { color: #888; font-size: 7px; }
