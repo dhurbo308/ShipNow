@@ -84,9 +84,9 @@ export function ShipmentsPage() {
             <div className="status-tabs">{tableStatuses.map((item) => <button key={item} className={status === item ? "active" : ""} onClick={() => { setStatus(item); setPage(1); }}>{item}</button>)}</div>
             <div className="shipment-controls">
               <label><Search size={17} /><input aria-label="Search shipments" value={query} onChange={(e) => { setQuery(e.target.value); setPage(1); }} placeholder="Search id, company, etc" /></label>
-              <label className="control-select"><Filter size={16} /><span className="sr-only">Freight type</span><select value={mode} onChange={(e) => { setMode(e.target.value as FreightMode); setPage(1); }}><option value="all">All freight</option><option value="road">Road</option><option value="rail">Rail</option><option value="air">Air</option></select></label>
+              <label className="control-select filter-control"><Filter size={16} /><span className="control-label">Filter</span><span className="sr-only">Freight type</span><select value={mode} onChange={(e) => { setMode(e.target.value as FreightMode); setPage(1); }}><option value="all">All freight</option><option value="road">Road</option><option value="rail">Rail</option><option value="air">Air</option></select></label>
               <button className="mobile-new-shipment" aria-label="New shipment" onClick={() => router.push("/shipments/new")}><Plus size={18} /></button>
-              <label className="control-select"><CalendarDays size={15} /><span className="sr-only">Shipment date range</span><select value={dateRange} onChange={(e) => { setDateRange(e.target.value); setPage(1); }}><option>All dates</option><option>Mar 18–19</option><option>Mar 20–21</option></select></label>
+              <label className="control-select date-control"><CalendarDays size={15} /><span className="control-label">This Month</span><span className="sr-only">Shipment date range</span><select value={dateRange} onChange={(e) => { setDateRange(e.target.value); setPage(1); }}><option>All dates</option><option>Mar 18–19</option><option>Mar 20–21</option></select></label>
             </div>
           </div>
           <ShipmentTable records={visibleRecords} />

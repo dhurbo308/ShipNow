@@ -65,6 +65,7 @@ export function LoginPage() {
             <input
               id="email"
               type="email"
+              suppressHydrationWarning
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -83,6 +84,7 @@ export function LoginPage() {
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
+                suppressHydrationWarning
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -96,6 +98,7 @@ export function LoginPage() {
               <button
                 type="button"
                 className="password-toggle"
+                suppressHydrationWarning
                 onClick={() => setShowPassword((visible) => !visible)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
@@ -111,18 +114,24 @@ export function LoginPage() {
             <label className="checkbox-label">
               <input
                 type="checkbox"
+                suppressHydrationWarning
                 checked={remember}
                 onChange={(e) => setRemember(e.target.checked)}
               />
               <span aria-hidden="true">✓</span>
               Remember Me
             </label>
-            <button type="button" className="text-button">Forgot Password?</button>
+            <button type="button" className="text-button" suppressHydrationWarning>
+              Forgot Password?
+            </button>
           </div>
 
-          <button className="login-button" type="submit">Login</button>
+          <button className="login-button" type="submit" suppressHydrationWarning>
+            Login
+          </button>
           <p className="register-copy">
-            Don&apos;t have an account? <button type="button">Register</button>
+            Don&apos;t have an account?{" "}
+            <button type="button" suppressHydrationWarning>Register</button>
           </p>
         </form>
       </section>

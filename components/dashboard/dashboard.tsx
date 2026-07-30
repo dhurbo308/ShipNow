@@ -14,13 +14,31 @@ import {
 } from "@/data/dashboard/dashboard-data";
 
 export function Dashboard() {
+  const [shipmentQuery, setShipmentQuery] = useState("");
+
+  function submitDashboardSearch(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    document.querySelector(".recent-panel")?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }
+
   return (
     <>
       <main className="dashboard">
         <header className="dashboard-header">
           <div><p>Hello John!</p><h1>Good Morning</h1></div>
           <div className="header-actions">
-            <label className="global-search"><Search size={18} /><input placeholder="Search anything" /></label>
+            <form className="global-search" role="search" onSubmit={submitDashboardSearch}>
+              <Search size={18} />
+              <input
+                aria-label="Search dashboard shipments"
+                value={shipmentQuery}
+                onChange={(event) => setShipmentQuery(event.target.value)}
+                placeholder="Search anything"
+              />
+            </form>
             <Link className="primary-button" href="/shipments/new"><Plus size={18} /><span>Add New Shipping</span></Link>
           </div>
         </header>
@@ -62,7 +80,7 @@ export function Dashboard() {
 
           <TrackingPanel />
           <AlertsPanel />
-          <RecentShipments />
+          <RecentShipments query={shipmentQuery} onQueryChange={setShipmentQuery} />
           <ActivityPanel />
         </div>
       </main>
@@ -267,9 +285,11 @@ function ProfitSummary() {
 
 function TrackingPanel() {
   return <Panel className="tracking-panel" title="">
+    <div className="tracking-map">
     <div className="map-search"><input placeholder="Search by Shipping ID..." /><Search size={17} /></div>
     <div className="map-controls"><button>+</button><button>−</button></div>
     <div className="route-line"><span>➤</span></div>
+    </div>
     <article className="tracking-card">
       <header><strong>#SH8743921</strong><small>Courier:<b>Daniel Cooper</b>SkyLogix Express</small></header>
       <div><span>In Transit</span> On Schedule</div>
@@ -291,8 +311,13 @@ function AlertsPanel() {
   </Panel>;
 }
 
-function RecentShipments() {
-  const [query, setQuery] = useState("");
+function RecentShipments({
+  query,
+  onQueryChange,
+}: {
+  query: string;
+  onQueryChange: (query: string) => void;
+}) {
   const [status, setStatus] = useState("All");
   const [selected, setSelected] = useState<string[]>([]);
   const statusFilters = ["All", "In Transit", "Out for Delivery", "Delivered", "Processing"];
@@ -304,16 +329,16 @@ function RecentShipments() {
   }), [query, status]);
   const allSelected = filteredShipments.length > 0 && filteredShipments.every((shipment) => selected.includes(shipment.id));
 
-  return <Panel className="recent-panel" title={<>Recent Shipment<span className="desktop-plural">s</span></>}>
+  return <div id="recent-shipments" className="recent-panel-anchor"><Panel className="recent-panel" title={<>Recent Shipment<span className="desktop-plural">s</span></>}>
     <div className="table-tools">
-      <label><Search size={15} /><input aria-label="Search recent shipments" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search shipment" /></label>
+      <label><Search size={15} /><input aria-label="Search recent shipments" value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder="Search shipment" /></label>
       <button className={status !== "All" ? "filter-active" : ""} aria-label={`Change recent shipment filter. Current filter: ${status}`} title={`Filter: ${status}`} onClick={() => setStatus(statusFilters[(statusFilters.indexOf(status) + 1) % statusFilters.length])}><SlidersHorizontal size={15} /></button>
       <button aria-label="More recent shipment options"><MoreHorizontal size={15} /></button>
     </div>
     <div className="table-scroll" tabIndex={0} aria-label="Scrollable recent shipments table"><table><thead><tr><th><input aria-label="Select all visible shipments" type="checkbox" checked={allSelected} onChange={() => setSelected(allSelected ? [] : filteredShipments.map((shipment) => shipment.id))} /></th><th>Shipping ID ↕</th><th>Company ↕</th><th>Carriers ↕</th><th>Route ↕</th><th>Shipping Date ↕</th><th>Status ↕</th></tr></thead>
       <tbody>{filteredShipments.map((shipment) => <tr key={shipment.id}><td><input aria-label={`Select ${shipment.id}`} type="checkbox" checked={selected.includes(shipment.id)} onChange={() => setSelected((current) => current.includes(shipment.id) ? current.filter((id) => id !== shipment.id) : [...current, shipment.id])} /></td><td><b>#{shipment.id}</b></td><td>{shipment.company}<small>{shipment.category}</small></td><td>{shipment.carrier}</td><td>{shipment.route}</td><td>{shipment.date}</td><td><span className={`status ${shipment.status.toLowerCase().replaceAll(" ", "-")}`}>{shipment.status}</span></td></tr>)}</tbody>
     </table>{!filteredShipments.length && <div className="recent-empty" role="status">No shipments match your search and filter.</div>}</div>
-  </Panel>;
+  </Panel></div>;
 }
 
 function ActivityPanel() {
