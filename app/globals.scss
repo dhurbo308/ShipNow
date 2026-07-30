@@ -267,11 +267,12 @@ button:focus-visible, a:focus-visible {
 .app-brand-mark i { position: absolute; width: 11px; height: 15px; background: currentColor; }
 .app-brand-mark i:first-child { top: 0; left: 0; }
 .app-brand-mark i:last-child { right: 0; bottom: 0; }
-.profile-card { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 10px; width: 100%; margin: 27px 0 18px; border: 0; border-radius: 8px; padding: 8px; color: #333; background: #f1f1f1; text-align: left; }
-.profile-card .avatar { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 50%; color: #fff; background: #292929; font-size: 10px; }
+.profile-card { display: grid; grid-template-columns: 36px minmax(0, 1fr) 16px; align-items: center; gap: 10px; width: 100%; min-height: 52px; margin: 27px 0 18px; border: 0; border-radius: 9px; padding: 8px 10px 8px 8px; color: #333; background: #f1f1f1; text-align: left; }
+.profile-card .avatar { display: grid; width: 34px; height: 34px; place-items: center; overflow: hidden; border-radius: 50%; color: transparent; background-color: #292929; background-image: url("/images/login-logistics.png"); background-position: 100% 8%; background-size: 300%; background-repeat: no-repeat; font-size: 0; }
 .profile-card strong, .profile-card small { display: block; }
-.profile-card strong { font-size: 12px; }
-.profile-card small { margin-top: 3px; color: #8a8a8a; font-size: 9px; }
+.profile-card strong { font-size: 12px; line-height: 1.15; }
+.profile-card small { margin-top: 4px; color: #8a8a8a; font-size: 9px; line-height: 1; }
+.profile-chevron { width: 15px; height: 15px; color: #333; stroke-width: 2; }
 .sidebar nav { display: grid; gap: 4px; }
 .sidebar nav a, .sidebar-secondary a { display: flex; align-items: center; gap: 14px; height: 39px; border-radius: 5px; padding: 0 13px; color: #777; text-decoration: none; font-size: 12px; }
 .sidebar nav a.active { color: #563bbd; background: #ded7ff; font-weight: 600; }
@@ -543,7 +544,7 @@ button:focus-visible, a:focus-visible {
 @media (max-width: 1200px) {
   .app-shell { grid-template-columns: 58px minmax(0, 1fr); }
   .sidebar { align-items: center; padding-inline: 10px; }
-  .sidebar .app-brand > span:last-child, .profile-card > span:not(.avatar), .sidebar nav a span, .sidebar-secondary a span, .sidebar-secondary a em, .upgrade-card { display: none; }
+  .sidebar .app-brand > span:last-child, .profile-card > span:not(.avatar), .profile-chevron, .sidebar nav a span, .sidebar-secondary a span, .sidebar-secondary a em, .upgrade-card { display: none; }
   .profile-card { display: grid; grid-template-columns: 1fr; padding: 7px; }
   .sidebar nav a, .sidebar-secondary a { justify-content: center; width: 47px; padding: 0; }
   .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -739,6 +740,7 @@ button:focus-visible, a:focus-visible {
     width: 100%;
     padding: 8px;
   }
+  .sidebar.mobile-open .profile-chevron { display: block; }
   .sidebar.mobile-open nav a,
   .sidebar.mobile-open .sidebar-secondary a {
     justify-content: flex-start;

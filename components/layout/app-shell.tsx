@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
   BarChart3, Bell, Boxes, CalendarDays, LayoutDashboard, MapPin,
-  ChevronLeft, Menu, MessageSquare, PackageSearch, ReceiptText, Settings, Truck,
+  ChevronDown, ChevronLeft, Menu, MessageSquare, PackageSearch, ReceiptText, Settings, Truck,
   UserRound, Warehouse,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
@@ -36,7 +36,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <button className="profile-card">
           <span className="avatar">JD</span>
           <span><strong>John Doe</strong><small>Admin</small></span>
-          <span>⌄</span>
+          <ChevronDown className="profile-chevron" aria-hidden="true" />
         </button>
         <nav aria-label="Main navigation">
           {nav.map(([label, Icon, href]) => (
