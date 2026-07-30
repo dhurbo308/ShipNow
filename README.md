@@ -36,7 +36,7 @@ npm run build
 
 ## Live demo
 
-Deployment is pending. The public Vercel or Netlify URL will be added here before submission.
+live demo link-`https://ship-now-two.vercel.app/`
 
 ## Routes
 
@@ -85,16 +85,5 @@ Wide data tables remain fully accessible inside horizontal scroll containers rat
 
 The implementation uses semantic headings, forms and tables; labelled inputs; alternative text; visible focus states; accessible drawer state; labelled icon controls; and keyboard-accessible buttons and links.
 
-## Assumptions
 
-- Photographic login imagery is a permitted substitute with the same purpose and placement as the design.
-- Navigation destinations not represented by an assignment screen use an explicit placeholder page.
-- Shipment card/table mode is stored in the `view` query parameter so the selected mode can be shared or refreshed.
-- The Create Shipment error styling appears after invalid submission instead of displaying errors before the user interacts with the form.
-- Warehouse floor tabs reuse the supplied static warehouse dataset and change the visual occupancy state; no mapping SDK is required.
-- Copyright text and dates reproduce the supplied design even when they differ from the current date.
 
-## Known issues
-
-- The public deployment URL has not yet been added.
-- Final pixel-level comparison should be repeated at exactly 1440 px, 768 px and 375 px after deployment because font rendering can differ between operating systems and browsers.
