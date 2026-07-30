@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Box, Filter, MoreHorizontal, Plane, ShipWheel, TrainFront, Truck } from "lucide-react";
+import { Box, FilePlus2, Filter, ListPlus, MoreHorizontal, Plane, ShipWheel, SquareCheck, TrainFront, TrendingUp, Truck } from "lucide-react";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 import { inventory, mapAreas, packages, storageRows, warehouseActivities } from "@/data/warehouse/warehouse-data";
 
@@ -10,8 +10,11 @@ export function WarehousePage() {
   const [packageTab, setPackageTab] = useState("All");
   const [floor, setFloor] = useState(1);
   const [sort, setSort] = useState("Section");
+  const [storageCategory, setStorageCategory] = useState("All");
   const filteredPackages = packageTab === "All" ? packages : packages.filter((item) => item.status === packageTab);
-  const rows = useMemo(() => [...storageRows].sort((a,b) => sort === "Floor" ? a.floor - b.floor : a.section.localeCompare(b.section)), [sort]);
+  const rows = useMemo(() => storageRows
+    .filter((row) => storageCategory === "All" || row.category === storageCategory)
+    .sort((a,b) => sort === "Floor" ? a.floor - b.floor : a.section.localeCompare(b.section)), [sort, storageCategory]);
 
   return <>
     <main className="warehouse-page">
@@ -30,18 +33,17 @@ export function WarehousePage() {
         </section>
         <InventoryPanel />
         <CapacityPanel />
-        <StoragePanel rows={rows} sort={sort} setSort={setSort} />
+        <StoragePanel rows={rows} sort={sort} setSort={setSort} category={storageCategory} setCategory={setStorageCategory} />
         <PackagePanel items={filteredPackages} tab={packageTab} setTab={setPackageTab} />
         <WarehouseMap floor={floor} setFloor={setFloor} />
         <ActivityLog />
       </div>
     </main>
-    <footer className="shipments-footer"><strong>Copyright © 2025 Peterdraw</strong><span>Privacy Policy　 Term and conditions　 Contact</span><span>◉　𝕏　◎　▻　in</span></footer>
   </>;
 }
 
 function Stat({ label, value, suffix, trend }: { label: string; value: string; suffix?: string; trend: string }) {
-  return <article><p>{label}</p><div><strong>{value}</strong>{suffix && <span>{suffix}</span>}<b>↝ {trend}</b></div></article>;
+  return <article><p>{label}</p><div><span className="warehouse-stat-value"><strong>{value}</strong>{suffix && <span>{suffix}</span>}</span><b><TrendingUp />{trend}</b></div></article>;
 }
 
 function PanelHeader({ title, children }: { title: string; children?: React.ReactNode }) {
@@ -49,15 +51,16 @@ function PanelHeader({ title, children }: { title: string; children?: React.Reac
 }
 
 function InventoryPanel() {
-  return <section className="warehouse-panel inventory-panel"><PanelHeader title="Warehouse Inventory" /><h3>10,000 <small>packages</small></h3><div className="inventory-bars">{inventory.map((item) => <div key={item.category}><span>{item.category}</span><i><b style={{ height: `${item.percent * 3.2}px`, background: item.color }} /></i><strong>{item.percent}% <small>· {item.packages.toLocaleString()}</small></strong></div>)}</div></section>;
+  return <section className="warehouse-panel inventory-panel"><PanelHeader title="Warehouse Inventory" /><h3>10,000 <small>packages</small></h3><div className="inventory-bars">{inventory.map((item, index) => <div className={`inventory-item inventory-item-${index + 1}`} key={item.category}><span>{item.category}</span><i><b style={{ height: `${item.percent * 2.1}px` }} /></i><strong>{item.percent}% <small>· {item.packages.toLocaleString()}</small></strong></div>)}</div></section>;
 }
 
 function CapacityPanel() {
   return <section className="warehouse-panel capacity-panel"><PanelHeader title="Capacity Usage" /><div className="capacity-chart"><ResponsiveContainer width="100%" height={190}><PieChart><Pie data={[{ value: 62.5 },{ value: 37.5 }]} dataKey="value" innerRadius={67} outerRadius={84} startAngle={90} endAngle={-270} stroke="none"><Cell fill="#8064ed" /><Cell fill="#fff" /></Pie></PieChart></ResponsiveContainer><span>Total Usage<strong>62.5%</strong></span></div><footer><span>Loaded<strong>40 shelves</strong></span><span>Empty<strong>24 shelves</strong></span></footer></section>;
 }
 
-function StoragePanel({ rows, sort, setSort }: { rows: typeof storageRows; sort: string; setSort: (value: string) => void }) {
-  return <section className="warehouse-panel storage-panel"><PanelHeader title="Warehouse Storage"><div className="storage-controls"><button><Filter />Filter⌄</button><span>Sort by:</span><select value={sort} onChange={(e) => setSort(e.target.value)}><option>Section</option><option>Floor</option></select></div></PanelHeader><div className="warehouse-table"><table><thead><tr><th>Floor ↕</th><th>Section ↕</th><th>Category ↕</th><th>Storage Used ↕</th><th>Percentage ↕</th><th>Available Space ↕</th></tr></thead><tbody>{rows.map((row) => <tr key={row.section}><td>{row.floor}</td><td>{row.section}</td><td>{row.category}</td><td><i><b style={{ width: `${row.used}%` }} /></i><small>{row.used}% · {row.available}/100</small></td><td>{row.used}%</td><td>{row.available}/100</td></tr>)}</tbody></table></div></section>;
+function StoragePanel({ rows, sort, setSort, category, setCategory }: { rows: typeof storageRows; sort: string; setSort: (value: string) => void; category: string; setCategory: (value: string) => void }) {
+  const categories = ["All", ...Array.from(new Set(storageRows.map((row) => row.category)))];
+  return <section className="warehouse-panel storage-panel"><PanelHeader title="Warehouse Storage"><div className="storage-controls"><label><Filter /><span className="sr-only">Filter storage category</span><select value={category} onChange={(e) => setCategory(e.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select></label><span>Sort by:</span><select aria-label="Sort warehouse storage" value={sort} onChange={(e) => setSort(e.target.value)}><option>Section</option><option>Floor</option></select></div></PanelHeader><div className="warehouse-table"><table><thead><tr><th>Floor ↕</th><th>Section ↕</th><th>Category ↕</th><th>Storage Used ↕</th><th>Percentage ↕</th><th>Available Space ↕</th></tr></thead><tbody>{rows.map((row) => <tr key={row.section}><td>{row.floor}</td><td>{row.section}</td><td>{row.category}</td><td><i><b style={{ width: `${row.used}%` }} /></i><small>{row.used}% · {row.available}/100</small></td><td>{row.used}%</td><td>{row.available}/100</td></tr>)}</tbody></table>{!rows.length && <p role="status">No storage rows match this filter.</p>}</div></section>;
 }
 
 function PackagePanel({ items, tab, setTab }: { items: typeof packages; tab: string; setTab: (value: string) => void }) {
@@ -69,5 +72,9 @@ function WarehouseMap({ floor, setFloor }: { floor: number; setFloor: (value: nu
 }
 
 function ActivityLog() {
-  return <section className="warehouse-panel warehouse-activity"><PanelHeader title="Warehouse Activity Log" /><div>{warehouseActivities.map((item) => <article key={item.person}><i>{item.icon}</i><p><b>{item.person}</b> {item.text}<small>{item.time}</small></p></article>)}</div></section>;
+  const icons = [SquareCheck, ListPlus, Truck, FilePlus2];
+  return <section className="warehouse-panel warehouse-activity"><PanelHeader title="Warehouse Activity Log" /><div>{warehouseActivities.map((item, index) => {
+    const ActivityIcon = icons[index];
+    return <article key={item.person}><i><ActivityIcon /></i><p><b>{item.person}</b> {item.text}<small>{item.time}</small></p></article>;
+  })}</div></section>;
 }

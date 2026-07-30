@@ -14,7 +14,7 @@ export type Shipment = {
   mode: "air" | "road" | "rail";
 };
 
-export const shipmentRecords: Shipment[] = [
+const featuredShipments: Shipment[] = [
   ["SH9283746","TechGear Inc.","Electronics","Los Angeles, CA","Chicago, IL","Mar 20, 2035 – 10:00 AM","Mar 23, 2035 – 03:00 PM","FedEx",60,"In Transit","air"],
   ["SH9182635","StyleHub Co.","Apparel","New York, NY","Atlanta, GA","Mar 19, 2035 – 11:30 AM","Mar 22, 2035 – 01:00 PM","DHL",75,"Out for Delivery","road"],
   ["SH9037821","FreshNest","Home & Kitchen","Dallas, TX","Miami, FL","Mar 18, 2035 – 09:00 AM","Mar 21, 2035 – 06:00 PM","UPS",100,"Delivered","rail"],
@@ -30,3 +30,10 @@ export const shipmentRecords: Shipment[] = [
 ].map(([id, company, category, origin, destination, originDate, destinationDate, carrier, progress, status, mode]) => ({
   id, company, category, origin, destination, originDate, destinationDate, carrier, progress, status, mode,
 })) as Shipment[];
+
+export const shipmentRecords: Shipment[] = Array.from({ length: 4 }, (_, batch) =>
+  featuredShipments.map((shipment, index) => batch === 0 ? shipment : {
+    ...shipment,
+    id: `SH${String(8100000 + batch * 100000 + index * 137).padStart(7, "0")}`,
+  }),
+).flat();

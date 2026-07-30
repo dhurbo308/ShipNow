@@ -1,10 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
-import { CalendarDays, ChevronDown, MoveLeft } from "lucide-react";
-
-type FormErrors = { deliveryAddress?: string; method?: string };
+import { FormEvent, useRef, useState } from "react";
+import { CalendarDays, ChevronDown, ChevronUp, MoveLeft } from "lucide-react";
 
 const initialForm = {
   senderCompany: "GreenHaven",
@@ -25,9 +23,10 @@ const initialForm = {
   carrier: "FedEx",
   method: "",
   shipmentId: "#SH9583742",
-  date: "March 21, 2035",
+  date: "2035-03-21",
   notes: "",
 };
+type FormErrors = Partial<Record<keyof typeof initialForm, string>>;
 
 export function CreateShipmentForm() {
   const [form, setForm] = useState(initialForm);
@@ -36,18 +35,31 @@ export function CreateShipmentForm() {
 
   function update(name: keyof typeof initialForm, value: string) {
     setForm((old) => ({ ...old, [name]: value }));
-    if (name === "deliveryAddress" && value.trim()) setErrors((old) => ({ ...old, deliveryAddress: undefined }));
-    if (name === "method" && value) setErrors((old) => ({ ...old, method: undefined }));
+    if (value.trim()) setErrors((old) => ({ ...old, [name]: undefined }));
     setSubmitted(false);
   }
 
   function submit(event: FormEvent) {
     event.preventDefault();
     const next: FormErrors = {};
-    if (!form.deliveryAddress.trim()) next.deliveryAddress = "Address is required.";
+    const required: Array<keyof typeof initialForm> = [
+      "senderCompany", "senderEmail", "senderPhone", "pickupAddress", "recipientCompany",
+      "recipientEmail", "recipientPhone", "deliveryAddress", "description", "quantity",
+      "value", "weight", "carrier", "method", "date",
+    ];
+    required.forEach((name) => {
+      if (!form[name].trim()) next[name] = name === "deliveryAddress" ? "Address is required." : `${fieldName(name)} is required.`;
+    });
+    if (form.senderEmail && !isEmail(form.senderEmail)) next.senderEmail = "Enter a valid email address.";
+    if (form.recipientEmail && !isEmail(form.recipientEmail)) next.recipientEmail = "Enter a valid email address.";
+    if (form.senderPhone && !isPhone(form.senderPhone)) next.senderPhone = "Enter a valid phone number.";
+    if (form.recipientPhone && !isPhone(form.recipientPhone)) next.recipientPhone = "Enter a valid phone number.";
+    if (form.quantity && Number(form.quantity) <= 0) next.quantity = "Quantity must be greater than zero.";
+    if (form.weight && Number(form.weight) <= 0) next.weight = "Weight must be greater than zero.";
     if (!form.method) next.method = "Shipping method is required.";
     setErrors(next);
     if (!Object.keys(next).length) setSubmitted(true);
+    else requestAnimationFrame(() => document.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus());
   }
 
   return (
@@ -62,36 +74,36 @@ export function CreateShipmentForm() {
           <h2>Shipment Form</h2>
           <section className="contact-sections">
             <FormSection title="Sender Info">
-              <Field label="Company" name="senderCompany" value={form.senderCompany} update={update} wide />
-              <Field label="Email" name="senderEmail" value={form.senderEmail} update={update} />
-              <PhoneField label="Phone Number" name="senderPhone" value={form.senderPhone} update={update} />
-              <Field label="Pickup Address" name="pickupAddress" value={form.pickupAddress} update={update} wide />
+              <Field label="Company" name="senderCompany" value={form.senderCompany} update={update} error={errors.senderCompany} wide />
+              <Field label="Email" name="senderEmail" type="email" value={form.senderEmail} update={update} error={errors.senderEmail} />
+              <PhoneField label="Phone Number" name="senderPhone" value={form.senderPhone} update={update} error={errors.senderPhone} />
+              <Field label="Pickup Address" name="pickupAddress" value={form.pickupAddress} update={update} error={errors.pickupAddress} wide />
             </FormSection>
             <FormSection title="Recipient Info">
-              <Field label="Company" name="recipientCompany" value={form.recipientCompany} update={update} wide />
-              <Field label="Email" name="recipientEmail" value={form.recipientEmail} update={update} />
-              <PhoneField label="Phone Number" name="recipientPhone" value={form.recipientPhone} update={update} />
+              <Field label="Company" name="recipientCompany" value={form.recipientCompany} update={update} error={errors.recipientCompany} wide />
+              <Field label="Email" name="recipientEmail" type="email" value={form.recipientEmail} update={update} error={errors.recipientEmail} />
+              <PhoneField label="Phone Number" name="recipientPhone" value={form.recipientPhone} update={update} error={errors.recipientPhone} />
               <Field label="Delivery Address" name="deliveryAddress" value={form.deliveryAddress} update={update} placeholder="Street address, city, state/province, ZIP code" error={errors.deliveryAddress} wide />
             </FormSection>
           </section>
 
           <section className="detail-sections">
             <FormSection title="Package Details" className="package-section">
-              <Field label="Item Description" name="description" value={form.description} update={update} wide />
-              <Field label="Quantity" name="quantity" type="number" value={form.quantity} update={update} />
-              <Field label="Value" name="value" value={form.value} update={update} />
-              <div className="weight-field"><Field label="Weight" name="weight" value={form.weight} update={update} /><label><span>Units</span><select><option>Kg</option><option>Lb</option></select></label></div>
-              <div className="dimensions"><span>Dimensions</span>{(["length","width","height"] as const).map((name) => <label key={name}><span>{name === "height" ? "ex. 20" : form[name]}</span><small>cm</small><input aria-label={name} value={form[name]} onChange={(e) => update(name, e.target.value)} /></label>)}</div>
+              <Field label="Item Description" name="description" value={form.description} update={update} error={errors.description} wide />
+              <QuantityField value={form.quantity} error={errors.quantity} onChange={(value) => update("quantity", value)} />
+              <Field label="Value" name="value" value={form.value} update={update} error={errors.value} />
+              <div className="weight-field"><Field label="Weight" name="weight" type="number" value={form.weight} update={update} error={errors.weight} /><label><span>Units</span><div className="unit-select"><select aria-label="Weight unit"><option>Kg</option><option>Lb</option></select><ChevronDown /></div></label></div>
+              <div className="dimensions"><span>Dimensions</span>{(["length","width","height"] as const).map((name) => <label key={name}><input aria-label={`${name} in centimeters`} inputMode="decimal" placeholder={name === "height" ? "ex. 20" : undefined} value={form[name]} onChange={(e) => update(name, e.target.value)} /><small>cm</small></label>)}</div>
               <div className="dimension-labels"><span>Length</span><span>Width</span><span>Height</span></div>
             </FormSection>
 
             <FormSection title="Shipping Details" className="shipping-section">
               <fieldset className="freight-types"><legend>Freight Type</legend>{["Road Freight","Rail Freight","Ocean Freight","Air Freight"].map((item, index) => <label key={item}><input type="radio" name="freight" defaultChecked={index === 0} />{item}</label>)}</fieldset>
               <div className="shipping-fields">
-                <SelectField label="Carrier" value={form.carrier} onChange={(value) => update("carrier", value)} options={["FedEx","DHL","UPS","USPS"]} />
+                <SelectField label="Carrier" value={form.carrier} onChange={(value) => update("carrier", value)} options={["FedEx","DHL","UPS","USPS"]} error={errors.carrier} />
                 <SelectField label="Shipping Method" value={form.method} onChange={(value) => update("method", value)} options={["","Standard","Express","Priority"]} placeholder="Select Method" error={errors.method} />
                 <Field label="Shipment ID" name="shipmentId" value={form.shipmentId} update={update} disabled hint="Auto-generated" />
-                <label className="form-field"><span>Shipment Date</span><div className="date-input"><input value={form.date} onChange={(e) => update("date", e.target.value)} /><CalendarDays /></div></label>
+                <DateField value={form.date} error={errors.date} onChange={(value) => update("date", value)} />
               </div>
               <Field label="Notes" name="notes" value={form.notes} update={update} placeholder="Add special delivery notes (optional)" wide />
               <div className="services-row">
@@ -105,7 +117,6 @@ export function CreateShipmentForm() {
           <footer className="form-actions"><button type="button" onClick={() => { setForm(initialForm); setErrors({}); setSubmitted(false); }}>Delete Form</button><button type="submit">Submit Shipment</button></footer>
         </form>
       </main>
-      <footer className="shipments-footer"><strong>Copyright © 2025 Peterdraw</strong><span>Privacy Policy　 Term and conditions　 Contact</span><span>◉　𝕏　◎　▻　in</span></footer>
     </>
   );
 }
@@ -118,11 +129,13 @@ function Field({ label, name, value, update, wide, placeholder, error, type = "t
   label: string; name: keyof typeof initialForm; value: string; update: (name: keyof typeof initialForm, value: string) => void;
   wide?: boolean; placeholder?: string; error?: string; type?: string; disabled?: boolean; hint?: string;
 }) {
-  return <label className={`form-field ${wide ? "wide" : ""}`}><span>{label}</span><input type={type} value={value} disabled={disabled} placeholder={placeholder} aria-invalid={Boolean(error)} onChange={(e) => update(name, e.target.value)} />{error && <small className="field-error">{error}</small>}{hint && <small>{hint}</small>}</label>;
+  const errorId = `${name}-error`;
+  return <label className={`form-field ${wide ? "wide" : ""}`}><span>{label}</span><input id={name} name={name} type={type} value={value} disabled={disabled} placeholder={placeholder} aria-invalid={Boolean(error)} aria-describedby={error ? errorId : undefined} onChange={(e) => update(name, e.target.value)} />{error && <small id={errorId} className="field-error">{error}</small>}{hint && <small>{hint}</small>}</label>;
 }
 
 function PhoneField(props: Omit<Parameters<typeof Field>[0], "wide">) {
-  return <label className="form-field"><span>{props.label}</span><div className="phone-input"><UsFlag /><span>+1⌄</span><input value={props.value} onChange={(e) => props.update(props.name, e.target.value)} /></div></label>;
+  const errorId = `${props.name}-error`;
+  return <label className="form-field"><span>{props.label}</span><div className="phone-input"><UsFlag /><span className="phone-country"><select aria-label="Country calling code" defaultValue="+1"><option>+1</option></select><ChevronDown /></span><i className="phone-divider" /><input name={props.name} type="tel" aria-invalid={Boolean(props.error)} aria-describedby={props.error ? errorId : undefined} value={props.value} onChange={(e) => props.update(props.name, e.target.value)} /></div>{props.error && <small id={errorId} className="field-error">{props.error}</small>}</label>;
 }
 
 function UsFlag() {
@@ -135,5 +148,33 @@ function UsFlag() {
 }
 
 function SelectField({ label, value, onChange, options, placeholder, error }: { label: string; value: string; onChange: (value: string) => void; options: string[]; placeholder?: string; error?: string }) {
-  return <label className="form-field"><span>{label}</span><div className="select-wrap"><select value={value} aria-invalid={Boolean(error)} onChange={(e) => onChange(e.target.value)}>{options.map((option) => <option value={option} key={option}>{option || placeholder}</option>)}</select><ChevronDown /></div>{error && <small className="field-error">{error}</small>}</label>;
+  return <label className="form-field"><span>{label}</span><div className="select-wrap"><select aria-label={label} value={value} aria-invalid={Boolean(error)} onChange={(e) => onChange(e.target.value)}>{options.map((option) => <option value={option} key={option}>{option || placeholder}</option>)}</select><ChevronDown /></div>{error && <small className="field-error">{error}</small>}</label>;
+}
+
+function QuantityField({ value, error, onChange }: { value: string; error?: string; onChange: (value: string) => void }) {
+  const number = Number(value) || 0;
+  return <label className="form-field"><span>Quantity</span><div className="quantity-input"><input aria-label="Quantity" inputMode="numeric" value={value} aria-invalid={Boolean(error)} onChange={(event) => onChange(event.target.value.replace(/\D/g, ""))} /><span><button type="button" aria-label="Increase quantity" onClick={() => onChange(String(number + 1))}><ChevronUp /></button><button type="button" aria-label="Decrease quantity" onClick={() => onChange(String(Math.max(1, number - 1)))}><ChevronDown /></button></span></div>{error && <small className="field-error">{error}</small>}</label>;
+}
+
+function DateField({ value, error, onChange }: { value: string; error?: string; onChange: (value: string) => void }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  function openCalendar() {
+    const input = inputRef.current;
+    if (!input) return;
+    if (typeof input.showPicker === "function") input.showPicker();
+    else { input.focus(); input.click(); }
+  }
+  return <div className="form-field"><span id="shipment-date-label">Shipment Date</span><div className="date-input calendar-input"><button className="calendar-trigger" type="button" onClick={openCalendar} aria-labelledby="shipment-date-label"><span>{formatDate(value)}</span><CalendarDays aria-hidden="true" /></button><input ref={inputRef} className="calendar-native-input" name="date" type="date" tabIndex={-1} aria-labelledby="shipment-date-label" aria-invalid={Boolean(error)} value={value} onChange={(event) => onChange(event.target.value)} /></div>{error && <small className="field-error">{error}</small>}</div>;
+}
+
+function formatDate(value: string) {
+  if (!value) return "Select date";
+  const [year, month, day] = value.split("-").map(Number);
+  return new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(new Date(year, month - 1, day));
+}
+
+function isEmail(value: string) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
+function isPhone(value: string) { return /^\d{3}-\d{3}-\d{4}$/.test(value); }
+function fieldName(name: keyof typeof initialForm) {
+  return name.replace(/([A-Z])/g, " $1").replace(/^./, (letter) => letter.toUpperCase());
 }

@@ -9,16 +9,17 @@ import {
   UserRound, Warehouse,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
+import { SiteFooter } from "@/components/layout/site-footer";
 
 const nav = [
   ["Dashboard", LayoutDashboard, "/dashboard"],
-  ["Analytics", BarChart3, "#"],
-  ["Calendar", CalendarDays, "#"],
+  ["Analytics", BarChart3, "/placeholder/analytics"],
+  ["Calendar", CalendarDays, "/placeholder/calendar"],
   ["Shipments", Truck, "/shipments"],
-  ["Tracking", MapPin, "#"],
+  ["Tracking", MapPin, "/placeholder/tracking"],
   ["Warehouse", Warehouse, "/warehouse"],
-  ["Fleets", PackageSearch, "#"],
-  ["Drivers", UserRound, "#"],
+  ["Fleets", PackageSearch, "/placeholder/fleets"],
+  ["Drivers", UserRound, "/placeholder/drivers"],
   ["Invoices & Billing", ReceiptText, "/invoices"],
 ] as const;
 
@@ -39,15 +40,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </button>
         <nav aria-label="Main navigation">
           {nav.map(([label, Icon, href]) => (
-            <Link className={href !== "#" && pathname.startsWith(href) ? "active" : ""} href={href} key={label} onClick={() => setDrawerOpen(false)}>
+            <Link className={pathname.startsWith(href) ? "active" : ""} href={href} key={label} onClick={() => setDrawerOpen(false)}>
               <Icon size={19} /><span>{label}</span>
             </Link>
           ))}
         </nav>
         <div className="sidebar-secondary">
-          <Link href="#" onClick={() => setDrawerOpen(false)}><MessageSquare size={18} /><span>Message</span><em>19</em></Link>
-          <Link href="#" onClick={() => setDrawerOpen(false)}><Bell size={18} /><span>Notification</span><em>5</em></Link>
-          <Link href="#" onClick={() => setDrawerOpen(false)}><Settings size={18} /><span>Settings</span></Link>
+          <Link href="/placeholder/messages" onClick={() => setDrawerOpen(false)}><MessageSquare size={18} /><span>Message</span><em>19</em></Link>
+          <Link href="/placeholder/notifications" onClick={() => setDrawerOpen(false)}><Bell size={18} /><span>Notification</span><em>5</em></Link>
+          <Link href="/placeholder/settings" onClick={() => setDrawerOpen(false)}><Settings size={18} /><span>Settings</span></Link>
         </div>
         <div className="upgrade-card">
           <Boxes size={37} />
@@ -63,6 +64,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <button aria-label={drawerOpen ? "Close navigation" : "Open navigation"} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}><Menu size={21} /></button>
         </header>
         {children}
+        <SiteFooter />
       </div>
     </div>
   );

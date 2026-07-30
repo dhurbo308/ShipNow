@@ -18,18 +18,17 @@ export function InvoicesPage() {
 
   return <>
     <main className="invoices-page">
-      <header className="invoices-heading"><div><h1>Invoices &amp; Billing</h1><p><b>Dashboard</b> / Invoices &amp; Billing</p></div><label><Search /><input placeholder="Search anything" /></label></header>
+      <header className="invoices-heading"><div><h1>Invoices &amp; Billing</h1><p><b>Dashboard</b> / Invoices &amp; Billing</p></div><label><Search /><input aria-label="Search invoices" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search anything" /></label></header>
       <InvoiceMetrics />
       <div className="invoice-master-detail">
         <section className="invoice-list-panel">
-          <header><h2>Invoices</h2><div><label><Search /><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search invoices" /></label><button onClick={cycleStatus} aria-label={`Filter invoices. Current filter: ${status}`} title={`Filter: ${status}`}><SlidersHorizontal /></button><button>New Invoice</button></div></header>
+          <header><h2>Invoices</h2><div><label><Search /><input aria-label="Search invoices" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search invoices" /></label><button onClick={cycleStatus} aria-label={`Filter invoices. Current filter: ${status}`} title={`Filter: ${status}`}><SlidersHorizontal /></button><button>New Invoice</button></div></header>
           <InvoiceTable records={filtered} selectedId={selectedId} onSelect={(id) => { setSelectedId(id); setDetailOpen(true); }} />
         </section>
         <button className={`invoice-backdrop ${detailOpen ? "open" : ""}`} onClick={() => setDetailOpen(false)} aria-label="Close invoice details" />
         <InvoiceDetail invoice={selected} open={detailOpen} onClose={() => setDetailOpen(false)} />
       </div>
     </main>
-    <footer className="shipments-footer"><strong>Copyright © 2025 Peterdraw</strong><span>Privacy Policy　 Term and conditions　 Contact</span><span>◉　𝕏　◎　▻　in</span></footer>
   </>;
 }
 
